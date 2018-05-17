@@ -41,10 +41,10 @@
 #### 安装教程
 
 1. 解压后执行src\main\resources\sql\MySQL.sql,MySQL_Data.sql脚本创建数据库和表及数据
-2. 单独在Tomcat运行正常启动即可，如果是IDEA请设置访问路径为shop，即http://ip:port/shop，port为Tomcat的端口，即http://localhost:8080/shop
-3. 后台管理路径http://ip:port/shop/adminManager，帐号密码都是wang，即http://localhost:8080/shop/adminManager
+2. 单独在Tomcat运行正常启动即可，如果是IDEA请设置访问路径为shop，即[http://ip:port/shop/](http://ip:port/shop/)，port为Tomcat的端口，示例[http://localhost:8080/shop/](http://localhost:8080/shop/)
+3. 后台管理路径[http://ip:port/shop/adminManager/](http://ip:port/shop/adminManager/)，帐号密码都是wang，示例[http://localhost:8080/shop/adminManager/](http://localhost:8080/shop/adminManager/)
 4. Nginx + Tomcat动静分离，正常安装配置Nginx，可以参考我的Nginx配置，把项目路径和端口号修改为你的就可以了
-5. 启动Tomcat和Nginx，直接访问Nginx即可，一般地址为http://ip:port/shop，port为Nginx的端口，即http://localhost:80/shop，静态文件Nginx处理，动态请求反向代理给Tomcat处理
+5. 启动Tomcat和Nginx，直接访问Nginx即可，一般地址为[http://ip:port/shop/](http://ip:port/shop/)，port为Nginx的端口，示例[http://localhost:80/shop/adminManager/](http://localhost:80/shop/adminManager/)，静态文件Nginx处理，动态请求反向代理给Tomcat处理
 ```Xml
 #user  nobody;
 worker_processes  2;
