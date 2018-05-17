@@ -25,23 +25,23 @@
 * 对话提示框：Layer、SweetAlert<br/>
 * 富文本编辑器：Ckeditor<br/>
 * 图片延迟加载：JQuery LazyLoad<br/>
-* 文件上传工具:Bootstrap FileInput<br/>
+* 文件上传工具：Bootstrap FileInput<br/>
 
 ##### 环境介绍
 
-* Jdk8.0+: JDK环境<br/>
-* MySql5.7+: 数据库<br/>
-* Tomcat8.0+: 应用服务器<br/>
-* Nginx1.13+: 反向代理服务器<br/>
-* Maven3.3+: 项目构建<br/>
-* Eclipse、IntelliJ IDEA: 开发IDE<br/>
-* Git2.6+: 版本管理<br/>
-* Navicat for MySQL: 数据库客户端<br/>
+* Jdk8.0+：JDK环境<br/>
+* MySql5.7+：数据库<br/>
+* Tomcat8.0+：应用服务器<br/>
+* Nginx1.13+：反向代理服务器<br/>
+* Maven3.3+：项目构建<br/>
+* Git2.6+：版本管理<br/>
+* Eclipse、IntelliJ IDEA：开发IDE<br/>
+* Navicat for MySQL：数据库客户端<br/>
 
 #### 安装教程
 
 1. 解压后执行src\main\resources\sql\MySQL.sql,MySQL_Data.sql脚本创建数据库和表及数据
-2. 单独在Tomcat运行正常启动即可，如果是IDEA请设置访问路径为shop，即[http://ip:port/shop/](http://ip:port/shop/)，port为Tomcat的端口，示例[http://localhost:8080/shop/](http://localhost:8080/shop/)
+2. 单独在Tomcat运行正常启动即可，如果是IDEA请设置访问路径为shop，即[http://ip:port/shop/](http://ip:port/shop/)，port为Tomcat的端口
 3. 后台管理路径[http://ip:port/shop/adminManager/](http://ip:port/shop/adminManager/)，帐号密码都是wang，示例[http://localhost:8080/shop/adminManager/](http://localhost:8080/shop/adminManager/)
 4. Nginx + Tomcat动静分离，正常安装配置Nginx，可以参考我的Nginx配置，把项目路径和端口号修改为你的就可以了
 5. 启动Tomcat和Nginx，直接访问Nginx即可，一般地址为[http://ip:port/shop/](http://ip:port/shop/)，port为Nginx的端口，示例[http://localhost:80/shop/adminManager/](http://localhost:80/shop/adminManager/)，静态文件Nginx处理，动态请求反向代理给Tomcat处理
