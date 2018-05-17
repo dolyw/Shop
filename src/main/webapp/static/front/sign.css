@@ -1,0 +1,69 @@
+/*
+CopyRight:DFrobot.com.cn 2017
+Author:Fish,Luke
+Content:SIGN
+*/
+#container {width: 1200px;position: relative;}
+#container .signFrame {width: 100%;height: 565px;margin-top: 6px;}
+#container .signFrame .lf {width: 800px;height: 565px;}
+#container .signFrame .lf img {width: 800px;height: 565px;}
+#container .signFrame .rf {width: 360px;height: 535px;padding: 15px 20px;background: #FFFFFF;}
+#container .signFrame .rf h3 {font-size: 18px;height: 19px;}
+#container .signFrame .signInputFrame {border: 1px solid #d1d1d1;height: 48px;margin-top: 26px;line-height: 50px;background: #FFFFFF;}
+#container .signFrame .signInputFrame:hover {border: 1px solid #df690f;}
+#container .signFrame .signInputFrame .name {float: left;width: 50px;height: 48px;text-align: center;}
+#container .signFrame .signInputFrame .name i {font-size: 22px;}
+#container .signFrame .signInputFrame .name2 {}
+#container .signFrame .signInputFrame .con {float: left;width: 308px;height: 48px;}
+#container .signFrame .signInputFrame .con input {width: 308px;height: 48px;padding: 0;margin: 0;border: none;outline: none;font-size: 16px;}
+#container .signFrame .signInputFrame .con input:-webkit-autofill {background-color: #FFFFFF!important;background-image: none;color: #000;}
+#container .signFrame .signInputFrame .error {position: absolute;line-height: 20px;height: 20px;margin-top: 51px;color: #e16811;display: none;}
+#container .signFrame .option {width: 100%;height: 30px;margin-top: 25px;}
+#container .signFrame .option .remember {float: left;font-size: 14px;line-height: 20px;}
+#container .signFrame .option .remember input {float: left;margin-right: 5px;}
+#container .signFrame .option .forgetPassword {float: right;}
+#container .signFrame .option .forgetPassword a {font-size: 14px;color: #e16811;}
+#container .signFrame .signinBtn {width: 100%;height: 50px;margin-top: 82px;font-size: 18px;font-weight: bold;color: #FFFFFF;background: #e16811;border: none;cursor: pointer;}
+#container .signFrame .signinBtn:focus {box-shadow: none;outline: none;}
+#container .signFrame .signupBtn {width: 100%;height: 50px;margin-top: 8px;font-size: 18px;font-weight: bold;color: #FFFFFF;background: #e16811;border: none;cursor: pointer;}
+#container .signFrame .signupBtn:focus {box-shadow: none;outline: none;}
+#container .signFrame .invalid {background: #EEEEEE;color: #CCCCCC;}
+#container .signFrame .checkbox {width: 20px;height: 20px;padding: 0;margin: 0;}
+#container .signFrame .regBtnFrame {height: 67px;line-height: 67px;text-align: center;border-bottom: 1px solid #9f9f9f;font-size: 16px;}
+#container .signFrame .otherSignin {}
+#container .signFrame .otherSignin .info {height: 42px;font-size: 14px;line-height: 48px;}
+#container .signFrame .otherSignin .wxSignin {float: left;margin-left: 38px;}
+#container .signFrame .otherSignin .qqSignin {float: left;margin-left: 34px;}
+#container .signFrame #signType {display: none;}
+#container .signFrame .option2 {padding-top: 7px;font-size: 14px;}
+#container .signFrame .option2 b {float: left;font-weight: normal;}
+#container .signFrame .option2 span {float: right;}
+#frogetPwdFrame {width: 100%;height: 600px;position: fixed;top: 0;left: 0;z-index: 11;display: none;}
+#frogetPwdFrame .maskBG {background: #000000;width: 100%;height: 600px;position: absolute;opacity: 0.5;}
+#frogetPwdFrame .con {position: absolute;z-index: 1;width: 500px;height: 480px;left: 50%;margin-left: -315px;background: #FFFFFF;box-shadow: 0px 0px 10px #FFFFFF;}
+#frogetPwdFrame .con .box {margin: 50px 49px;width: 531px;height: 418px;}
+#frogetPwdFrame .con .box .title {}
+#frogetPwdFrame .con .box .title h3 {height: 51px;font-size: 18px;font-weight: bold;}
+#frogetPwdFrame .con .box .title ul {width: 100%;}
+#frogetPwdFrame .con .box .title ul .select {color: #fd9326;border-color: #fd9326;}
+#frogetPwdFrame .con .box .title li {width: 122px;border-top: 6px solid #eeeeee;float: left;height: 30px;margin-right: 14px;text-align: center;line-height: 30px;font-size: 14px;}
+#frogetPwdFrame .con .box .title li:nth-child(4n+4) {margin: 0;}
+#frogetPwdFrame .con .box .stepFrame {clear: both;padding-top: 18px;width: 100%;height: 205px;}
+#frogetPwdFrame .con .box .stepFrame li {display: none;}
+#frogetPwdFrame .con .box .stepFrame .inputFrame {width: 100%;margin-top: 13px;}
+#frogetPwdFrame .con .box .stepFrame .inputFrame .about {width: 100%;height: 32px;font-size: 16px;}
+#frogetPwdFrame .con .box .stepFrame .inputFrame .input {padding: 0;width: 390px;height:30px;border: solid 1px #dfdfdf;}
+#frogetPwdFrame .con .box .stepFrame .inputFrame .checkCode {float: right;width: 240px;height: 30px;}
+#frogetPwdFrame .con .box .btnFrame {clear: both;}
+#frogetPwdFrame .con .box .btnFrame button {width: 140px;height: 30px;background: #fd9326;border: none;font-size: 16px;font-weight: bold;color: #FFFFFF;outline: none;cursor: pointer;}
+#frogetPwdFrame .con .box .btnFrame .invalid {background: #EEEEEE;color: #CCCCCC;}
+#container .agreeMent {width: 580px;background: #ffffff;position: fixed;top: 50%;left: 50%;margin-top: -260px;margin-left: -315px;z-index: 2;display: none;box-shadow: 0px 0px 33px #fffefe;padding: 20px;}
+#container .agreeMent i {position: relative;left: 560px;top: 20px;cursor: pointer;}
+#container .agreeMent .content::-webkit-scrollbar {width: 5px;height: 10px;}
+#container .agreeMent .content::-webkit-scrollbar-button {display: none;}
+#container .agreeMent::-webkit-scrollbar-track {-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);border-radius: 10px;background-color: #F5F5F5;display: none;}
+#container .agreeMent .content::-webkit-scrollbar-track-piece {height: 100px;}
+#container .agreeMent .content::-webkit-scrollbar-thumb {border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);background-color: rgba(85, 85, 85, 0.43);}
+#container .agreeMent .content {margin-top: 30px;height: 485px;width: 570px;/*padding: 20px;*/overflow: auto;}
+#container .agreeMent .content h2 {font-size: : 17PX;margin-bottom: 15px;}
+#container .agreeMent .content p {font-size: 15px;margin-bottom: 15px;line-height: 21px;}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wang.mapper.IndexCategoryMapper">
+
+	<resultMap type="IndexCategory" id="indexCategoryResultMap">
+		<id column="indexcategory_id" property="id" />
+		<association property="itemCategory" javaType="ItemCategory">
+			<id column="id" property="id"/>
+			<result column="name" property="name" />
+			<result column="addtime" property="addtime" />
+		</association>
+	</resultMap>
+	
+	<select id="findItemCategoryList" resultMap="indexCategoryResultMap">
+    	SELECT
+			a.id,
+			a.name,
+			a.addtime,
+			b.id indexcategory_id,
+			b.itemCategory_id
+		FROM
+			itemcategory a
+		LEFT JOIN indexcategory b ON a.id = b.itemCategory_id
+		ORDER BY
+			a.name
+	</select>
+	
+	<resultMap type="IndexCategory" id="indexCategoryResultMap2">
+		<id column="id" property="id" />
+		<result column="itemCategory_id" property="itemCategory_id" />
+		<association property="itemCategory" javaType="ItemCategory">
+			<id column="itemCategory_id2" property="id" />
+			<result column="itemcategory_name" property="name" />
+			<result column="itemcategory_addtime" property="addtime" />
+			<collection property="itemCategoryDetails" ofType="ItemCategoryDetail">
+				<id column="itemcategorydetail_id" property="id" />
+				<result column="itemcategorydetail_name" property="name" />
+				<result column="itemcategorydetail_addtime" property="addtime" />
+			</collection>
+		</association>
+	</resultMap>
+	
+	<select id="findIndexCategoryList" resultMap="indexCategoryResultMap2">
+    	SELECT
+			a.id,a.itemCategory_id,
+			b.id itemCategory_id2,b.`name` itemcategory_name,b.addtime itemcategory_addtime,
+			c.id itemcategorydetail_id,c.`name` itemcategorydetail_name,c.addtime itemcategorydetail_addtime
+		FROM
+			indexcategory a
+		LEFT JOIN itemcategory b ON a.itemCategory_id = b.id
+		LEFT JOIN itemcategorydetail c on b.id = c.itemCategory_id
+		ORDER BY
+			a.id
+	</select>
+	
+	<select id="findIndexCategory" resultType="IndexCategory">
+		select id,itemCategory_id from indexcategory where id=#{id}
+	</select>
+	
+	<update id="updateItemcategory_id">  
+        update indexcategory set itemcategory_id=null where id=#{id}    
+	</update>
+	
+</mapper>

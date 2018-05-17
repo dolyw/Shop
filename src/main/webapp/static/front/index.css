@@ -1,0 +1,63 @@
+
+#container {width: 1200px;position: relative;}
+#container div.floorModule {float: left;padding-bottom: 1px;}
+#container .floorCon .moduletitle {font-weight: bold;font-size: 21px;padding: 15px 0 15px 0;}
+#container .floorCon .moduletitle .more a {float: right;color: #636363;font-size: 18px}
+#container .floorCon .newShop {/*background: url(homepage_14.jpg);*/width: 1200px;/*height: 791px;*/margin: 0 auto;}
+#container .floorCon .newShop .shopList {height: 385px;width: 282px;position: relative;float: left;margin-left: 21px;margin-top: 16px;border: 1px solid transparent;background: #FFFFFF;}
+#container .floorCon .newShop .shopList:hover {border: solid 1px #337ab7;}
+#container .floorCon .newShop .shopList:nth-child(4n-7) {/*background: #ffffff;*/margin-left: 0;}
+#container .floorCon .newShop .shopList:nth-child(1),#container .floorCon .newShop .shopList:nth-child(2),#container .floorCon .newShop .shopList:nth-child(3),#container .floorCon .newShop .shopList:nth-child(4) {margin-top: 0;}
+#container .floorCon .newShop .shopList img {width: 100%;height: auto;}
+#container .floorCon .newShop .shopList a {text-decoration: none;color: #000000;}
+#container .floorCon .newShop .shopList .name {padding: 30px 0 0 14px;font-size: 16px;display: block;}
+#container .floorCon .newShop .shopList p {position: absolute;top: 355px;left: 11px;}
+#container .floorCon .newShop .shopList .addCart {background: #337ab7;height: 25px;display: none;font-size: 17px;color: #ffffff;width: 254px;border-radius: 3px;margin-left: 4px;margin-top: -5px;text-align: center;line-height: 24px;}
+#container .floorCon .newShop .shopList:hover .addCart {display: block;}
+#container .floorCon .newShop .shopList:hover .price,#container .floorCon .newShop .shopList:hover del  {display: none;}
+#container .floorCon .newShop .shopList .price {font-size: 18px;color: #337ab7;}
+#container .floorCon .indexWishlist{}
+#container .floorCon .indexWishlist li{float: left;margin-right: 20px;}
+#container .floorCon .indexWishlist li:nth-child(4n+4){margin: 0;}
+#container .floorCon .indexWishlist .thumb{width: 285px;height: 157px;}
+#container .floorCon .indexWishlist .thumb img{}
+#container .floorCon .indexWishlist .title{width: 257px;height: 41px;padding: 17px 14px;background: #FFFFFF;font-size: 16px;}
+#container .floorCon .indexWishlist .title a{color: #000000;}
+#container .iflashFrame{float: right;width: 1000px;height: 449px;overflow: hidden;}
+#container .iflashFrame .bigeye .list img{width: 1000px;height: 442px;}
+.floorFrame{}
+.floorFrame .title{padding: 10px;line-height: 17px;font-size: 16px;background: #ffffff;margin-top: 1px;word-break: break-all;}
+.floorFrame .title a{color: #000000;}
+.floorFrame .title:hover{cursor: pointer;background: #337ab7;}
+.floorFrame .title:hover a{color: #FFFFFF;}
+@media only screen and (min-width: 1200px) {.floorFrame{width: auto;position: fixed;left: 50%;text-align: left;top: 200px;margin-left: -715px;z-index: 10;}}
+@media only screen and (max-width:1480px) {.floorFrame{width: auto;position: fixed;left: 50%;text-align: left;top: 200px;margin-left: -50%;z-index: 10;}}
+@media only screen and (max-width: 1200px) {.floorFrame{width: auto;position: fixed;left: 50%;text-align: left;top: 200px;z-index: 10;border: solid 1px #eeeeee;}}
+#container .pages .rf{}
+#container .pages .rf .previous,#container .pages .rf .next{height: 38px;width: 73px;background: #eeeeee;display: block;text-align: center;line-height: 38px;margin-left: 12px;float: left;font-size: 18px;color: #000000;	}
+#container .pages .rf a{height: 38px;width: 30px;background: #ffffff;display: block;text-align: center;line-height: 38px;margin-left: 12px;float: left;font-size: 18px;color: #000000;	}
+#container .pages .rf a:hover{color: #FFFFFF;background: #e16811;cursor: pointer;}
+#container #ur_here {font-size: 14px;height: 45px;line-height: 43px;}
+#container .conLf {background: #ffffff;width: 199px;height: 616px;position: relative;}
+#container .conLf dl dd .iconfont{font-size: 19px;position: relative;left: -4px;background: #ffffff;}
+#container .conLf h2 i{border-right: solid 8px transparent;border-left: solid 6px transparent;}
+#container .conLf ul li i{border-right: solid 8px transparent;border-left: solid 4px transparent;}
+#container .conLf ul li .curs {color: #337ab7;}
+#container .conLf ul {margin-bottom: 32px;}
+#container .conLf ul li {margin-bottom: 11px;}
+#container .conLf ul li a {font-size: 16px;color: #000000;text-decoration: none;}
+#container .conLf dl{position: relative;padding: 0 44px;margin-left: 8px;}
+#container .conLf dl dd{background: #ffffff;}
+#container .conLf dl dd .icon-zichanzhongxin{font-size: 19px;border-right: solid 2px transparent;border-left: solid 6px transparent;}
+#container .conLf .line{ position: absolute;height: 2px;width: 152px; background: #e0690d;left: 24px;}
+#container .conLf .line01{top: 26px;}
+#container .conLf .line02{top: 105px;}
+#container .conLf .line03{top: 246px;}
+#container .conLf .line04{top: 449px;}
+#container .conLf h2 {font-size: 16px;margin-bottom: 11px;font-weight: bold;    margin-top: 16px;position: relative;background:#ffffff ;}
+#container .conLf h2:before {content: "";position: absolute;top: 9px;   background: #e0690d;width: 20px;height: 2px;left: -25px;}
+#container .conLf h2:after {content: "";position: absolute;top: 9px;   background: #e0690d;width: 20px;height: 2px;left: 105px;}
+#container .conRf .box {width: 969px;}
+#container .conRf .box .userCenter .allTop {height: 64px;line-height: 68px;background: #ffffff;font-size: 20px;font-weight: bold;padding: 0 0 0 26px;color: #E16811;margin-bottom: 5px;}
+#container .bodyBlack {width: 100%;height: 100%;background: rgba(35, 34, 33, 0.18);z-index: 100;/*display: block;*/position: fixed;top: 0;left: 0;}
+#container .hot .hotCon img{display: inline-block;}

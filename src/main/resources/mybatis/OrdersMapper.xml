@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wang.mapper.OrdersMapper">
+
+	<resultMap type="Orders" id="ordersResultMap">
+		<id column="orders_id" property="id" />
+		<result column="orders_price" property="price"/>
+		<result column="no" property="no"/>
+		<result column="state" property="state"/>
+		<result column="pay" property="pay"/>
+		<result column="courier" property="courier"/>
+		<result column="addtime" property="addtime"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="addr" property="addr"/>
+		<association property="user" javaType="User" select="findUserById" column="user_id"></association>
+		<!-- <collection property="orderItems" ofType="OrderItem" select="findOrderItemById" column="id">
+			<association property="item" javaType="Item" select="findItemById" column="item_id">
+				<association property="itemDetail" javaType="ItemDetail" 
+					select="com.zhike.mapper.ItemMapper.findItemDetailById" column="itemDetail_id">
+				</association>
+				<association property="itemCategoryDetail" javaType="ItemCategoryDetail" 
+					select="com.zhike.mapper.ItemMapper.findItemCategoryDetailById" column="itemCategoryDetail_id">
+				</association>
+			</association>
+		</collection> -->
+		<collection property="orderItems" ofType="OrderItem">
+			<id column="orderItem_id" property="id" />
+			<result column="orderItem_price" property="price"/>
+			<result column="count" property="count"/>
+			<result column="item_id" property="item_id"/>
+			<association property="item" javaType="Item">
+				<result column="item_name" property="name"/>
+				<result column="item_price" property="price"/>
+				<result column="item_picture" property="picture"/>
+			</association>
+		</collection>
+	</resultMap>
+	
+	<resultMap type="Orders" id="ordersAdminResultMap">
+		<id column="id" property="id" />
+		<association property="user" javaType="User" select="findUserById" column="user_id">
+			<id column="id" property="id" />
+		</association>
+		<collection property="orderItems" ofType="OrderItem" select="findOrderItemById" column="id">
+			<id column="id" property="id" />
+			<!-- <association property="item" javaType="Item" select="findItemById" column="item_id">
+				<association property="itemDetail" javaType="ItemDetail" 
+					select="com.zhike.mapper.ItemMapper.findItemDetailById" column="itemDetail_id">
+				</association>
+				<association property="itemCategoryDetail" javaType="ItemCategoryDetail" 
+					select="com.zhike.mapper.ItemMapper.findItemCategoryDetailById" column="itemCategoryDetail_id">
+				</association>
+			</association> -->
+		</collection>
+	</resultMap>
+	
+	<select id="findOrdersListAdmin" resultMap="ordersAdminResultMap">
+		SELECT
+			id, no, price, state, pay, courier, addtime, user_id, name, phone, addr
+		FROM
+			orders
+		<where>
+				<if test="id!=null and id!=''">
+					and id = #{id}
+				</if>
+				<if test="user_id!=null and user_id!=''">
+					and user_id = #{user_id}
+				</if>
+				<if test="state!=null and state!=''">
+					and state = #{state}
+				</if>
+				<if test="no!=null and no!=''">
+					and no = #{no}
+				</if>
+		</where>
+			order by addtime desc
+	</select>
+	
+	<select id="findOrdersList" resultMap="ordersResultMap">
+		SELECT
+			orders.id orders_id, orders.no, orders.price orders_price, orders.state, orders.pay, orders.courier, orders.addtime, 
+			orders.user_id, orders.name, orders.phone, orders.addr,
+			
+			orderItem.id orderItem_id, orderItem.count, orderItem.price orderItem_price, orderItem.item_id, 
+			orderItem.orders_id orderItem_orders_id,
+			
+			item.name item_name,item.price item_price,item.picture item_picture
+		FROM
+			orders LEFT JOIN orderItem on orders.id = orderItem.orders_id LEFT JOIN item on orderitem.item_id = item.id
+		<where>
+				<if test="id!=null and id!=''">
+					and orders.id = #{id}
+				</if>
+				<if test="user_id!=null and user_id!=''">
+					and orders.user_id = #{user_id}
+				</if>
+				<if test="state!=null and state!=''">
+					and orders.state = #{state}
+				</if>
+		</where>
+			order by orders.addtime desc
+	</select>
+	
+	<select id="findUserById" resultType="User">
+		SELECT
+			u.id,u.account,u.password,u.username,u.regtime
+		FROM
+			user u
+		WHERE
+			u.id = #{user_id}
+	</select>
+	
+	<select id="findOrderItemById" resultType="OrderItem" parameterType="int">
+		SELECT 
+			id, count, price, item_id, orders_id
+		FROM
+			orderItem
+		WHERE
+			orders_id = #{id}
+	</select>
+	
+	<!-- <select id="findOrderItemById" resultType="OrderItem" parameterType="int">
+		SELECT 
+			orderItem.*,item.name item_name,item.price item_price,item.picture item_picture
+		FROM
+			orderItem,item
+		WHERE 
+			orderitem.item_id = item.id
+			and orders_id = #{id}
+	</select> -->
+	
+</mapper>

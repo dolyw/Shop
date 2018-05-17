@@ -1,0 +1,94 @@
+/*
+CopyRight:DFrobot.com.cn 2017
+Author:Fish
+Content:wishlist
+*/
+#container .userCenter{width: 970px;}
+#container .userCenter .notice{width: 918px;height: 63px;padding: 0 26px;background: #FFFFFF;line-height: 63px;font-size: 18px;font-weight: bold;color: #e16811;}
+#container .userCenter .accountInfo{width: 918px;padding: 37px 26px;background: #FFFFFF;margin-top: 5px;}
+#container .userCenter .accountInfo .frame{border: 1px solid #e16811;}
+#container .userCenter .accountInfo .frame .totalPrice{width: 285px;height: 121px;float: left;margin: 26px 0 26px 45px;border-right: 2px solid #bfbfbf;}
+#container .userCenter .accountInfo .frame .totalPrice .title{font-size: 18px;height: 30px;text-indent: 6px;padding-top: 16px;}
+#container .userCenter .accountInfo .frame .totalPrice .price{font-size: 40px;font-weight: bold;color: #e16811;height: 50px;line-height: 40px;text-indent:-3px}
+#container .userCenter .accountInfo .frame .totalPrice .price span{font-size: 30px;}
+#container .userCenter .accountInfo .frame .totalPrice .wlTotalPrice{text-indent: 5px;font-size: 14px;}
+#container .userCenter .accountInfo .frame .totalPrice .wlTotalPrice span{color: #e16811;}
+#container .userCenter .accountInfo .frame .subPrice{margin: 26px 0 26px 60px;float: left;width: 280px;padding: 29px 0 0 0;font-size: 16px;}
+#container .userCenter .accountInfo .frame .subPrice p{display: block;height: 40px;}
+#container .userCenter .accountInfo .frame .subPrice p i{font-size: 32px;}
+#container .userCenter .accountInfo .frame .btnFrame{float: right;width: 217px;height: 120px;position: relative;}
+#container .userCenter .accountInfo .frame .btnFrame .oneBtn{top: 94px;left: 0;position: absolute;display: block;width: 142px;height: 30px;background: #ed6a00;color: #FFFFFF;line-height: 30px;text-align: center;font-size: 16px;}
+#container .userCenter .accountInfo .frame .btnFrame .topBtn{top: 53px;left: 0;position: absolute;display: block;width: 142px;height: 30px;background: #ed6a00;color: #FFFFFF;line-height: 30px;text-align: center;border: 1px solid #ed6a00;font-size: 16px;}
+#container .userCenter .accountInfo .frame .btnFrame .bottomBtn{top: 94px;left: 0;position: absolute;display: block;width: 142px;height: 30px;background: #FFFFFF;color: #ed6a00;line-height: 30px;text-align: center;border: 1px solid #ed6a00;font-size: 16px;}
+#container .userCenter .wishlistMylist .navigate{width: 918px;padding: 0 26px;height: 41px;background: #FFFFFF;position: relative;}
+#container .userCenter .wishlistMylist .navigate span{position: absolute;display: block;line-height: 30px;height: 30px;width: 60%;right: 26px;text-align: right;color: #e16811;font-size: 16px;}
+#container .userCenter .wishlistMylist .navigate ul{width: 918px;height: 40px;border-bottom: 1px solid #bfbfbf;}
+#container .userCenter .wishlistMylist .navigate ul li{float: left;border-right: 1px solid #bfbfbf;}
+#container .userCenter .wishlistMylist .navigate ul li:nth-last-child(1){border: none;}
+#container .userCenter .wishlistMylist .navigate ul li a{padding: 0 28px;font-size: 16px;color: #000000;display: block;height: 30px;line-height: 30px;}
+#container .userCenter .wishlistMylist .navigate ul li .select{color: #ed6a00;}
+#container .userCenter .wishlistMylist .list{width: 918px;padding: 18px 26px 58px 26px;background: #FFFFFF;}
+#container .userCenter .wishlistMylist .list ul{border: 1px solid #bfbfbf;float: left;border-right: none;border-bottom: none;}
+#container .userCenter .wishlistMylist .list ul li{float: left;height: 40px;line-height: 40px;border-bottom: 1px solid #bfbfbf;}
+#container .userCenter .wishlistMylist .list ul li div{float: left;text-align: center;border-right: 1px solid #bfbfbf;}
+#container .userCenter .wishlistMylist .list ul .tr{background: #eeeeee;font-weight: bold;border-bottom: none;font-size: 16px;}
+#container .userCenter .wishlistMylist .list ul .td{font-size: 14px;}
+#container .userCenter .wishlistMylist .list ul .td span{color: #ed6a00;font-weight: bold;}
+#container .userCenter .wishlistMylist .list ul .td a{padding: 0 5px;color: #000000;}
+#container .userCenter .wishlistMylist .list ul .td a:hover{color: #ed6a00;}
+#container .userCenter .wishlistMylist .list ul li .a{width: 135px;}
+#container .userCenter .wishlistMylist .list ul li .b{width: 360px;}
+#container .userCenter .wishlistMylist .list ul li .d{width: 128px;}
+#container .userCenter .wishlistMylist .list ul li .e{width: 86px;}
+#container .userCenter .wishlistMylist .list ul li .f{width: 70px;}
+#container .userCenter .wishlistMylist .list ul li .g{width: 132px;}
+#container .userCenter .wishlistMylist .about{width: 918px;padding: 18px 26px 58px 26px;background: #FFFFFF;display: none;}
+#container .wishlistBanner{}
+#container .filterFrame{position: relative;background: #ffffff;font-size: 16px;margin: 20px 0;height: 20px;padding: 15px 19px;}
+#container .filterFrame .dresGoods{position: absolute;/*left: 10px;*/  }
+#container .filterFrame .dresGoods .dress{color: #313131;}
+#container .filterFrame .dresGoods a{padding-right: 20px;}
+#container .filterFrame .dresGoods a i{font-size: 10px;display: inline-block;text-indent: 7px;}
+#container .filterFrame .dresGoods .current{color: #e16811;}
+#container .filterFrame .rank li{display: block; float: left; margin-left: 19px;}
+#container .filterFrame .rank li a{color: #313131;}
+#container .filterFrame .showGoods{margin-right: 5px;}
+#container .filterFrame .showGoods input{width: 21px;height: 21px;}
+#container .filterFrame .showGoods label{display: block;float: right;line-height: 25px;}
+#container .conList{width: 100%;}
+#container .conList .box_3{position: relative;padding: 13px 19px;font-size: 16px;background: #ffffff;height: auto;}
+#container .conList .box_3 .line{position: absolute;border: 1px #d4d4d4 dashed;width: 925px;margin: 10px 0;}
+#container .conList .box_3 .screeBox{width: 100%;}
+#container .conList .box_3 .screeBox b{font-weight: normal;display: block;float: left;width: 50px;}
+#container .conList .box_3 .screeBox .list{float: right;width: 880px;}
+#container .conList .box_3 .screeBox span{color: #e16811;display: block;float: left;padding: 0 10px;height: 25px;}
+#container .conList .box_3 .screeBox span:nth-child(1){}
+#container .conList .box_3 .screeBox span .select{color: #e16811;}
+#container .conList .box_3 .priceBox{margin-top: 29px;}
+#container .conList .box_3 .priceBox .lf{background: #FFFFFF;width: 70%;}
+#container .conList .box_3 .priceBox .pl10{margin-top: -4px;background: #ffffff;}
+#container .conList .box_3 .priceBox .pl10 input{border: solid 1px #dcdcdc;width: 59px;height: 27px;text-indent: 15px;}
+#container .conList .box_3 .priceBox .pl10 input:hover{background: #eeeeee;}
+#container .conList .box_3 .priceBox .pl10 span{display: initial;float: initial;padding: 0;}
+#container .conList .box_3 .priceBox .pl10 span:before{content: "￥";position: absolute;margin: 7px 0 0 2px;font-size: 14px;color: #313131;}
+#container .conList .box_3 .priceBox .pl10 input:focus{outline:none;border: solid 1px #fd9326;}
+#container .conList .box_3 .priceBox .pl10 input.submitbtn{color: #fffefe;background: #fd9326;height: 30px;border: none;width: 60px;text-indent: 0;cursor: pointer;margin-right: 4px;}
+#container .conList .goodsItemh{float: left;position: relative;border: solid 2px transparent;background: #ffffff;width: 382px;height: 330px;margin: 0 21px 30px 0;}
+#container .conList .goodsItemh:hover{border: solid 2px #e16811;}
+#container .conList .goodsItemh:hover .addCart{display: block;}
+#container .conList .goodsItemh:hover .price,#container .conList .goodsItemh:hover del{display: none;}
+#container .conList .goodsItemh:nth-child(3n+3) {/*background: #ffffff;*/margin-right: 0;}
+#container .conList .goodsItemh .goodImg {display: block;width: 382px;height: 238px;overflow: hidden;}
+#container .conList .goodsItemh .goodImg img{width: 100%;height: auto;}
+#container .conList .goodsItemh .name {display: block;padding: 15px 16px;font-size: 17px;}
+#container .conList .goodsItemh .price {font-size: 18px; color: #E16811; display: inline-block;}
+#container .conList .goodsItemh p{position: absolute;top: 281px;padding: 5px 13px 0 13px;}
+#container .conList .goodsItemh .addCart{display: none;position:absolute;left: 50%;top: 287px;margin-left: -179px;color: #ffffff;background: #e16811;width: 355px;height: 25px;border-radius: 3px;line-height: 25px;text-align: center;}
+#container .conList form .pages{/*background: rgba(139, 69, 19, 0.31);*/margin-top: 20px;height: 78px;/* line-height: 78px; */}
+#container .conList form .pages .lf{padding: 8px 0 0 0;}
+#container .conList form .pages .lf span{font-size: 18px;}
+#container .conList form .pages .pageJump a{display: block;float: left; height: 38px; border: solid 2px transparent;}
+#container .conList form .pages .pageJump a:hover{border: solid 2px #e16811;}
+#container .conList form .pages .pageJump .num{color: #000000;width: 30px;line-height: 38px;margin-left: 10px;background: #ffffff;font-size: 18px;text-align: center;}
+#container .conList form .pages .pageJump .current{color: #ffffff;background: #e16811;}
+#container .conList form .pages .pageJump .next,#container .conList form .pages .pageJump .previous{color: #000000;width: 73px;line-height: 38px;margin-left: 10px;background: #ffffff;font-size: 18px;text-align: center;}

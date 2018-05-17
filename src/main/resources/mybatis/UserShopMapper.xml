@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wang.mapper.UserShopMapper">
+
+	<resultMap type="UserShop" id="userShopResultMap">
+		<id column="id" property="id" />
+		<result column="item_id" property="item_id"/>
+		<association property="item" javaType="Item" select="findItemById" column="item_id">
+			<id column="id" property="id" />
+			<association property="itemDetail" javaType="ItemDetail" >
+				<id column="itemDetail_id" property="id" />
+				<result column="itemdetail_list" property="list"/>
+			</association>
+			<!-- <association property="itemDetail" javaType="com.zhike.model.ItemDetail" 
+				select="com.zhike.mapper.ItemMapper.findItemDetailById" column="itemDetail_id">
+				<id column="id" property="itemDetail_id" />
+			</association>
+			<association property="itemCategoryDetail" javaType="ItemCategoryDetail" 
+				select="com.zhike.mapper.ItemMapper.findItemCategoryDetailById" column="itemCategoryDetail_id">
+			</association> -->
+		</association>
+	</resultMap>
+	
+	<select id="findUserShopList" resultMap="userShopResultMap">
+		SELECT
+			id, count, price, addtime, user_id, item_id
+		FROM
+			usershop
+		<where>
+				<if test="id!=null and id!=''">
+					and id = #{id}
+				</if>
+				<if test="user_id!=null and user_id!=''">
+					and user_id = #{user_id}
+				</if>
+				<if test="item_id!=null and item_id!=''">
+					and item_id = #{item_id}
+				</if>
+		</where>
+	</select>
+	
+	<!-- <select id="findItemById" resultType="Item">
+		SELECT  
+			id, name, price, brand, model, stock, picture, addtime, itemDetail_id, itemCategoryDetail_id
+		FROM
+			item
+		WHERE
+			id = #{item_id}
+	</select> -->
+	
+	<select id="findItemById" resultType="Item">
+		SELECT  
+			item.*,itemdetail.id itemdetail_id,itemdetail.list itemdetail_list
+		FROM
+			item,itemdetail
+		WHERE
+			item.itemdetail_id = itemdetail.id
+			and item.id = #{item_id}
+	</select>
+	
+	<select id="findUserShopTotalByUserId" resultType="java.lang.String">
+		select 
+			truncate(sum(price),2)
+		from 
+			usershop
+		where
+			user_id = #{user_id}
+	</select>
+	
+</mapper>

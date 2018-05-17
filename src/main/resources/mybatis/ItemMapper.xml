@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wang.mapper.ItemMapper">
+
+	<resultMap type="Item" id="itemResultMap">
+		<id column="id" property="id" />
+		<result column="itemDetail_id" property="itemDetail_id"/>
+		<association property="itemDetail" javaType="ItemDetail" select="findItemDetailById" column="itemDetail_id">
+			<id column="id" property="id" />
+		</association>
+		<association property="itemCategoryDetail" javaType="ItemCategoryDetail" select="findItemCategoryDetailById" column="itemCategoryDetail_id">
+			<id column="id" property="id" />
+		</association>
+	</resultMap>
+	
+	<select id="findItemList" resultMap="itemResultMap">
+		SELECT 
+			id, name, price, brand, model, stock, picture, addtime, itemDetail_id, itemCategoryDetail_id
+		FROM
+			item
+		<where>
+				<if test="id!=null and id!=''">
+					and id = #{id}
+				</if>
+		</where>
+	</select>
+	
+	<select id="findItemListWrapper" resultMap="itemResultMap">
+		SELECT 
+			id, name, price, brand, model, stock, picture, addtime, itemDetail_id, itemCategoryDetail_id
+		FROM
+			item
+		<where>
+  			${ew.sqlSegment}
+  		</where>
+	</select>
+	
+	<select id="findItemDetailById" resultType="ItemDetail" parameterType="int">
+		SELECT
+			id, picture1, picture2, picture3, picture4, picture5, intro, chara, specifi, list, downname, download
+		FROM
+			itemDetail
+		WHERE
+			id = #{itemDetail_id}
+	</select>
+	
+	<select id="findItemCategoryDetailById" resultType="ItemCategoryDetail" parameterType="int">
+		SELECT
+			id, name, addtime
+		FROM
+			itemCategoryDetail
+		WHERE
+			id = #{itemCategoryDetail_id}
+	</select>
+	
+	<select id="findItemStock" resultType="java.lang.Integer">
+		SELECT 
+			stock
+		FROM
+			item
+		WHERE
+		 	id = #{id}
+	</select>
+	
+</mapper>
