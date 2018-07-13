@@ -45,8 +45,8 @@
 3. 后台管理路径[http://ip:port/shop/adminManager/](http://ip:port/shop/adminManager/)，帐号密码都是wang，示例[http://localhost:8080/shop/adminManager/](http://localhost:8080/shop/adminManager/)
 4. Nginx + Tomcat动静分离，正常安装配置Nginx，可以参考我的Nginx配置，把项目路径和端口号修改为你的就可以了
 5. 启动Tomcat和Nginx，直接访问Nginx即可，一般地址为[http://ip:port/shop/](http://ip:port/shop/)，port为Nginx的端口，示例[http://localhost:80/shop/adminManager/](http://localhost:80/shop/adminManager/)，静态文件Nginx处理，动态请求反向代理给Tomcat处理
-```Xml
-#user  nobody;
+```yml
+# user nobody;
 worker_processes  2;
 
 events {
@@ -54,40 +54,39 @@ events {
 }
 
 http {
-		
-	gzip on;
+    gzip on;
     gzip_vary on;
     gzip_disable "MSIE [1-6]\.";
     gzip_proxied any;
     gzip_min_length 1k;
     gzip_comp_level 4;
     gzip_types text/plain text/css application/json application/x-javascript application/javascript text/javascript application/xml text/xml image/jpeg image/png image/gif;
-		
-    include       mime.types;
-    default_type  application/octet-stream;
-    sendfile        on;
-    keepalive_timeout  65;
+
+    include mime.types;
+    default_type application/octet-stream;
+    sendfile on;
+    keepalive_timeout 65;
 
     server {
-        listen       80;
-        server_name  localhost;
+        listen 80;
+        server_name localhost;
         index index.html index.htm index.jsp;
 
         location ^~ /static/ {
-				    root E:\Work\Shop\src\main\webapp;
-				}
-        
+                    root E:\Work\Shop\src\main\webapp;
+                }
+
         location / {
             proxy_pass http://localhost:8080;
-		        proxy_redirect off;
-		        proxy_set_header Host $host;
-		        proxy_set_header X-Real-IP $remote_addr;
-		        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_redirect off;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
-        
-        error_page   500 502 503 504  /50x.html;
+
+        error_page 500 502 503 504 /50x.html;
         location = /50x.html {
-            root   html;
+            root html;
         }
     }
 }
