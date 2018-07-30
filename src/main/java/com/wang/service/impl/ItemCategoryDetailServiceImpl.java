@@ -21,7 +21,8 @@ public class ItemCategoryDetailServiceImpl extends ServiceImpl<ItemCategoryDetai
 	
 	@Autowired
 	private ItemCategoryDetailMapper itemCategoryDetailMapper;
-	
+
+	@Override
 	public Page<ItemCategoryDetail> findItemCategoryDetailList(Page<ItemCategoryDetail> page, Map map) {
 	    // 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
 	    // page.setOptimizeCountSql(false);

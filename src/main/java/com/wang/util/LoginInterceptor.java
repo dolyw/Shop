@@ -24,9 +24,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
   
     public void setExceptUrls(List<String> exceptUrls) {  
         this.exceptUrls = exceptUrls;  
-    }  
-  
-    //执行action之前来执行  
+    }
+
+    /**
+     * 执行action之前来执行
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     @Override  
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws  
             Exception {  

@@ -83,8 +83,9 @@ public class SystemAdminController extends BaseController {
 			HttpServletRequest request) {
     	IndexCategory indexCategory = new IndexCategory();
     	for(int i=0;i<itemCategory_ids.length;i++){
-    		Long l = new Long((long)i); // int转换Long
-    		Long j = new Long((long)itemCategory_ids[i]); // int转换Long
+			// int转换Long
+    		Long l = new Long((long)i);
+    		Long j = new Long((long)itemCategory_ids[i]);
     		if(j == 0){
     			if(indexCategoryService.findIndexCategory(l+1).getItemCategory_id() == null){
     				continue;
@@ -92,7 +93,8 @@ public class SystemAdminController extends BaseController {
             		indexCategoryService.updateItemcategory_id(l+1);
         		}
 			}else{
-				indexCategory.setId(l+1); // 从1开始
+				// 从1开始
+				indexCategory.setId(l+1);
         		indexCategory.setItemCategory_id(j);
         		indexCategoryService.updateById(indexCategory);
 			}

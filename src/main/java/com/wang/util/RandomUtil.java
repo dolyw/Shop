@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 public class RandomUtil {
 
-	private static Random _rand = new Random();;
+	private static Random RAND = new Random();
 	
 	/**
 	 * 获取订单号，日期加上3位随机数
@@ -22,7 +22,7 @@ public class RandomUtil {
     	Date date = new Date();  
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");  
         String dateNowStr = sdf.format(date);
-        int random = _rand.nextInt(900) + 100;
+        int random = RAND.nextInt(900) + 100;
     	return dateNowStr + random;
     }
     
@@ -31,7 +31,7 @@ public class RandomUtil {
      * @return
      */
     public static String getCheckCode(){
-        int random = _rand.nextInt(9000) + 1000;
+        int random = RAND.nextInt(9000) + 1000;
     	return random + "";
     }
     

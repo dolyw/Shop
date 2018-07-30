@@ -33,6 +33,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	@Autowired
 	private UserShopMapper userShopMapper;
 
+	@Override
 	public Page<User> findUserList(Page<User> page, Map map) {
 		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
 	    // page.setOptimizeCountSql(false);
@@ -44,6 +45,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	/**
 	 * 添加商品到购物车
 	 */
+	@Override
 	public boolean addUserShop(UserShop userShop) {
 		/*int stock = itemMapper.findItemStock(item.getId()) - userShop.getCount();
 		if(stock < 0){
@@ -52,7 +54,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 		item.setStock(stock);
 		itemMapper.updateById(item);*/
 		
-		Map map = new HashMap();
+		Map map = new HashMap(16);
 		map.put("user_id", userShop.getUser_id());
 		map.put("item_id", userShop.getItem_id());
 		List<UserShop> userShops = this.userShopMapper.findUserShopList(map);

@@ -68,7 +68,7 @@ public class OrdersController extends BaseController {
     @RequestMapping("/state")
 	public String orderState(Model model, HttpServletRequest request) {
     	User user = (User)request.getSession().getAttribute("user");
-    	Map map = new HashMap();
+    	Map map = new HashMap(16);
 		map.put("user_id", user.getId());
 		List<UserShop> userShops = this.userShopService.findUserShopList(map);
 		if(userShops.size() <= 0){
@@ -81,7 +81,8 @@ public class OrdersController extends BaseController {
 		model.addAttribute("userAddrs", userAddrs);
 		// 查询购物车商品
 		model.addAttribute("userShops", userShops);
-		model.addAttribute("total", userShopService.findUserShopTotalByUserId(user.getId())); // 获取商品总价
+		// 获取商品总价
+		model.addAttribute("total", userShopService.findUserShopTotalByUserId(user.getId()));
 		
 		return "front/order/orderState";
 	}
@@ -104,10 +105,11 @@ public class OrdersController extends BaseController {
     	orders.setName(userAddr.getName());
     	orders.setPhone(userAddr.getPhone());
     	orders.setAddr(userAddr.getAddr());
-    	//订单号生成
+    	// 订单号生成
     	orders.setNo(RandomUtil.getRandom());
     	orders.setTrade_no(orders.getNo());
-    	orders.setState(1); // 设置订单状态
+		// 设置订单状态
+    	orders.setState(1);
     	orders.setAddtime(new Date());
     	Boolean flag = ordersService.addOrders(orders);
     	if(flag){
@@ -159,7 +161,7 @@ public class OrdersController extends BaseController {
     @RequiresUser
     @RequestMapping("/directPay")
 	public String orderDirectPay(Model model, String no, HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	Map map = new HashMap();
+    	Map map = new HashMap(16);
         map.put("no", no);
 		List<Orders> ordersList = ordersService.findOrdersListAdmin(
         		new Page<Orders>(1, 3), map).getRecords();
@@ -230,7 +232,7 @@ public class OrdersController extends BaseController {
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
         int page_Num = Integer.parseInt(pageNumber);
         int page_Size = Integer.parseInt(pageSize);
-        Map map = new HashMap();
+        Map map = new HashMap(16);
 		map.put("user_id", user.getId());
         Page<Orders> selectPage = ordersService.findOrdersList(
         		new Page<Orders>(page_Num, page_Size), map);

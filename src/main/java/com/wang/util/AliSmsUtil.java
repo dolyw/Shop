@@ -25,15 +25,22 @@ import java.util.Map;
  *
  * 备注:Demo工程编码采用UTF-8
  * 国际短信发送请勿参照此DEMO
+ * @author Wang926454
  */
 public class AliSmsUtil {
 
-    //产品名称:云通信短信API产品,开发者无需替换
+    /**
+     * 产品名称:云通信短信API产品,开发者无需替换
+     */
     static final String product = "Dysmsapi";
-    //产品域名,开发者无需替换
+    /**
+     * 产品域名,开发者无需替换
+     */
     static final String domain = "dysmsapi.aliyuncs.com";
 
-    // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
+    /**
+     * TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
+     */
     static final String accessKeyId = "XXXXX";
     static final String accessKeySecret = "XXXXX";
     
@@ -110,9 +117,9 @@ public class AliSmsUtil {
      * @throws InterruptedException
      */
     public static Map smsStatus(String phone) throws ClientException, InterruptedException {
-    	//String phone = "15979271416";
+    	//String phone = "13266781417";
     	String checkCode = RandomUtil.getCheckCode();
-    	Map map = new HashMap();
+    	Map map = new HashMap(16);
     	map.put("checkCode", checkCode);
     	//发短信
         SendSmsResponse response = sendSms(phone, checkCode);
@@ -125,7 +132,7 @@ public class AliSmsUtil {
         //Thread.sleep(1000L);
 
         //查明细
-        if(response.getCode() != null && response.getCode().equals("OK")) {
+        if(response.getCode() != null && "OK".equals(response.getCode())) {
             QuerySendDetailsResponse querySendDetailsResponse = querySendDetails(phone, response.getBizId());
             System.out.println("短信明细查询接口返回数据----------------");
             // OK
@@ -157,9 +164,11 @@ public class AliSmsUtil {
      * @return
      */
     public static Map smsStatus() {
-        Map map = new HashMap();
-        map.put("checkCode", "wang"); // 验证码
-        map.put("status", "OK"); // 状态
+        Map map = new HashMap(16);
+        // 验证码
+        map.put("checkCode", "wang");
+        // 状态
+        map.put("status", "OK");
         return map;
     }
 }

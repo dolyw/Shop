@@ -21,8 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
  * @author wang926454
  * @version 1.1
  */
-public class ShiroExceptionResolver implements HandlerExceptionResolver{  
-  
+public class ShiroExceptionResolver implements HandlerExceptionResolver{
+
+    @Override
     public ModelAndView resolveException(HttpServletRequest request,  
             HttpServletResponse response, Object handler, Exception ex) {  
         // TODO Auto-generated method stub  
@@ -36,7 +37,8 @@ public class ShiroExceptionResolver implements HandlerExceptionResolver{
         	ModelAndView mv = new ModelAndView("front/message");
         	mv.addObject("message", "无权访问");
         	return mv;
-        }else if(ex instanceof Exception){ // 全局异常捕捉  
+        }else if(ex instanceof Exception){
+            // 全局异常捕捉
             ModelAndView mv = new ModelAndView("front/exception");
             mv.addObject("message", ex.getMessage());
             return mv;  

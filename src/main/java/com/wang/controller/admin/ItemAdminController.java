@@ -89,7 +89,7 @@ public class ItemAdminController extends BaseController {
         Page<Item> selectPage = itemService.findItemList(
         		new Page<Item>(page_Num, page_Size), null);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
         map.put("data", selectPage.getRecords());
         return map;
@@ -135,8 +135,10 @@ public class ItemAdminController extends BaseController {
             if(!targetFile.exists()){  
                 targetFile.mkdirs();
             }
-            pic.transferTo(targetFile); //保存  
-            FileUtil.changeFolderPermission(targetFile); // 设置755权限
+            // 保存
+            pic.transferTo(targetFile);
+            // 设置755权限
+            FileUtil.changeFolderPermission(targetFile);
     	}
     	if(pic1.getOriginalFilename() != ""){
             String newFileName =  RandomUtil.getPicName() + ".jpg";
@@ -146,8 +148,8 @@ public class ItemAdminController extends BaseController {
             if(!targetFile.exists()){  
                 targetFile.mkdirs();  
             }
-            pic1.transferTo(targetFile); //保存
-            FileUtil.changeFolderPermission(targetFile); // 设置755权限
+            pic1.transferTo(targetFile);
+            FileUtil.changeFolderPermission(targetFile);
     	}
     	if(pic2.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
@@ -157,8 +159,8 @@ public class ItemAdminController extends BaseController {
             if(!targetFile.exists()){  
                 targetFile.mkdirs();  
             } 
-            pic2.transferTo(targetFile); //保存  
-            FileUtil.changeFolderPermission(targetFile); // 设置755权限
+            pic2.transferTo(targetFile);
+            FileUtil.changeFolderPermission(targetFile);
     	}
     	if(pic3.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
@@ -168,8 +170,8 @@ public class ItemAdminController extends BaseController {
             if(!targetFile.exists()){  
                 targetFile.mkdirs();  
             }
-            pic3.transferTo(targetFile); //保存  
-            FileUtil.changeFolderPermission(targetFile); // 设置755权限
+            pic3.transferTo(targetFile);
+            FileUtil.changeFolderPermission(targetFile);
     	}
     	if(pic4.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
@@ -179,8 +181,8 @@ public class ItemAdminController extends BaseController {
             if(!targetFile.exists()){  
                 targetFile.mkdirs();
             }
-            pic4.transferTo(targetFile); //保存  
-            FileUtil.changeFolderPermission(targetFile); // 设置755权限
+            pic4.transferTo(targetFile);
+            FileUtil.changeFolderPermission(targetFile);
     	}
     	if(pic5.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
@@ -190,8 +192,8 @@ public class ItemAdminController extends BaseController {
             if(!targetFile.exists()){  
                 targetFile.mkdirs();
             } 
-            pic5.transferTo(targetFile); //保存  
-            FileUtil.changeFolderPermission(targetFile); // 设置755权限
+            pic5.transferTo(targetFile);
+            FileUtil.changeFolderPermission(targetFile);
     	}
     	
     	if (item.getId() == null) {
@@ -226,7 +228,7 @@ public class ItemAdminController extends BaseController {
     @RequestMapping("/item/edit")
     public String itemEdit(Model model, @RequestParam(value = "id", required = false) Long id) {
 		if (id != null) {
-			Map map = new HashMap();
+			Map map = new HashMap(16);
 			map.put("id", id);
 			Item item = itemService.findItemList(new Page<Item>(1, 3), map).getRecords().get(0);
 			model.addAttribute("item", item);

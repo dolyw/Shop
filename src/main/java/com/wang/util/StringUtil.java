@@ -8,11 +8,14 @@ import java.io.UnsupportedEncodingException;
  * Date: 16/8/31
  * Time: 下午5:42
  * Describe: String工具类
+ * @author Wang926454
  */
 public class StringUtil {
 
-    // 定义下划线
-    private static final char UNDERLINE = '_';
+	/**
+	 * 定义下划线
+	 */
+	private static final char UNDERLINE = '_';
 
     /**
      * String为空判断
@@ -109,7 +112,7 @@ public class StringUtil {
 	public static int strToint(String str)   
 	{
 		//System.out.println(str);
-		if(str==null||str.equals(""))
+		if(str==null|| "".equals(str))
 		{
 			System.out.println("Str转int时Str为空字符串!");
 			str="0";
@@ -136,7 +139,7 @@ public class StringUtil {
 	public static float strTofloat(String str)   
 	{
 		//System.out.println(str);
-		if(str==null||str.equals(""))
+		if(str==null|| "".equals(str))
 		{
 			System.out.println("Str转int时Str为空字符串!");
 			str="0";
@@ -174,11 +177,15 @@ public class StringUtil {
 		int i = 0;
 		while(i>=0){
 		  try{
-			  i = str.indexOf("<input", i); //下面不进行++i的话，i就会一直匹配第一个不会往后匹配
-			  if(0 != ++i)    // 如果最后没匹配到就会返回-1，-1++ = 0，循环条件是i>=0，不进行这个if处理就会死循环
-			    str = replaceIndex(i-1,str,"&lt;");
-			  else
-			    break;
+			  //下面不进行++i的话，i就会一直匹配第一个不会往后匹配
+			  i = str.indexOf("<input", i);
+			  // 如果最后没匹配到就会返回-1，-1++ = 0，循环条件是i>=0，不进行这个if处理就会死循环
+			  if(0 != ++i){
+				  str = replaceIndex(i-1,str,"&lt;");
+			  }
+			  else{
+				  break;
+			  }
 		  }
 		  catch(StringIndexOutOfBoundsException e){
 		    e.printStackTrace();
@@ -194,9 +201,11 @@ public class StringUtil {
 	 */
 	public static String changeHTML1(String str){
 		//String changeStr="";
-		//str = str.replace("<","&lt;");		//转换字符串中的“<”符号
-		str = str.replace("\r\n","<br/>");		//转换字符串中的“>”符号
-		//changeStr=changeStr.replace("\r\n","<br>");		//转换字符串中的回车换行
+		// 转换字符串中的'<'符号
+		//str = str.replace("<","&lt;");
+		str = str.replace("\r\n","<br/>");
+		// 转换字符串中的回车换行
+		//changeStr=changeStr.replace("\r\n","<br>");
 		return str;
 	}
 	
@@ -211,16 +220,15 @@ public class StringUtil {
 	 * @param str
 	 * @return
 	 */
-	public static String toChinese(String str)  
-	{
-		if(str==null) str="";
-		try
-		{
+	public static String toChinese(String str) {
+		if(str == null){
+			str="";
+		}
+		try {
 			str = new String(str.getBytes("ISO-8859-1"),"UTF-8");
 		}
-		catch(UnsupportedEncodingException e)
-		{
-			str="";
+		catch(UnsupportedEncodingException e) {
+			str = "";
 			System.out.println("getBytes转码出现问题!");
 			e.printStackTrace();
 		}

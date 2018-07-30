@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
-    private static Properties _prop = new Properties();
+    private static Properties PROP = new Properties();
 
     /**
      * 读取配置文件
@@ -23,7 +23,7 @@ public class PropertiesUtil {
         try {
             InputStream in = PropertiesUtil.class.getResourceAsStream("/"+fileName);
             BufferedReader bf = new BufferedReader(new InputStreamReader(in));
-            _prop.load(bf);
+            PROP.load(bf);
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -35,6 +35,6 @@ public class PropertiesUtil {
      * @return
      */
     public static String getProperty(String key){
-        return _prop.getProperty(key);
+        return PROP.getProperty(key);
     }
 }

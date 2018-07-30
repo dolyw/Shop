@@ -157,11 +157,11 @@ public class IndexController extends BaseController {
     	List<Item> historyItems = new ArrayList<Item>();
     	for (Cookie cookie : cookies) {
             //要获取名字进行比对，而不是直接用==表达式来作比较
-    		if (cookie.getName().equals("historyCookie")){  
+    		if ("historyCookie".equals(cookie.getName())){
                 String[] historyIds = cookie.getValue().split("#");  
                 //得到cookie中存在的id，展现浏览过的商品  
                 for (String historyId : historyIds){
-                	Map map = new HashMap();
+                	Map map = new HashMap(16);
             		map.put("id", historyId);
             		List<Item> items = itemService.findItemList(new Page<Item>(1, 3), map)
             				.getRecords();
@@ -171,13 +171,13 @@ public class IndexController extends BaseController {
                 }  
             } 
         }
-        //回写cookie。
-        String cookieValue = CookieUtils.buildCookie(id.toString(), request);//产生想要的cookie中的值  
+        //回写cookie，产生想要的cookie中的值
+        String cookieValue = CookieUtils.buildCookie(id.toString(), request);
         Cookie cookie = new Cookie("historyCookie", cookieValue);  
         cookie.setMaxAge(7*24*60*60);  
         cookie.setPath("/");  
         response.addCookie(cookie);
-    	Map map = new HashMap();
+    	Map map = new HashMap(16);
 		map.put("id", id);
 		List<Item> items = itemService.findItemList(new Page<Item>(1, 3), map).getRecords();
 		if(items.size() > 0){
@@ -202,11 +202,11 @@ public class IndexController extends BaseController {
     	List<Item> historyItems = new ArrayList<Item>();
     	for (Cookie cookie : cookies) {
             //要获取名字进行比对，而不是直接用==表达式来作比较
-    		if (cookie.getName().equals("historyCookie")){  
+    		if ("historyCookie".equals(cookie.getName())){
                 String[] historyIds = cookie.getValue().split("\\,");  
                 //得到cookie中存在的id，展现浏览过的商品  
                 for (String historyId : historyIds){
-                	Map map = new HashMap();
+                	Map map = new HashMap(16);
             		map.put("id", historyId);
             		List<Item> items = itemService.findItemList(new Page<Item>(1, 3), map)
             				.getRecords();

@@ -72,7 +72,7 @@ public class UserController extends BaseController {
 	@RequestMapping("/register")
     public Object register(User user, HttpServletRequest request) throws Exception {
 		//System.out.println(user.getAccount());
-		Map map = new HashMap();
+		Map map = new HashMap(16);
 		map.put("account", user.getAccount());
 		List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
 		if(users.size() > 0){
@@ -87,8 +87,9 @@ public class UserController extends BaseController {
 	            		user.getPassword());  
 	            Subject currentUser = SecurityUtils.getSubject();  
 	            if (!currentUser.isAuthenticated()){
-	                //使用shiro来验证   
-	                currentUser.login(token);//验证角色和权限
+	                // 使用shiro来验证
+					// 验证角色和权限
+	                currentUser.login(token);
 	            }
 			}
 	        catch(Exception ex){
@@ -110,7 +111,7 @@ public class UserController extends BaseController {
 	@RequestMapping("/existUser")
     public Object existUser(User user, HttpServletRequest request) throws Exception {
 		//System.out.println(user.getAccount());
-		Map map = new HashMap();
+		Map map = new HashMap(16);
 		map.put("account", user.getAccount());
 		List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
 		if(users.size() > 0){
@@ -132,9 +133,11 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping("/getSms")
     public Object getSms(String account) throws ClientException, InterruptedException {
-		//使用短信验证码要自行填写AliSmsUtil配置信息，再打开真实接口
-    	//Map map = AliSmsUtil.smsStatus(account); // 真实接口
-		Map map = AliSmsUtil.smsStatus(); // 测试接口
+		// 使用短信验证码要自行填写AliSmsUtil配置信息，再打开真实接口
+		// 真实接口
+		// Map map = AliSmsUtil.smsStatus(account);
+		// 测试接口
+		Map map = AliSmsUtil.smsStatus();
 		return renderSuccess(map);
     }
 	
@@ -155,9 +158,11 @@ public class UserController extends BaseController {
             		user.getPassword());  
             Subject currentUser = SecurityUtils.getSubject();  
             if (!currentUser.isAuthenticated()){
-                //使用shiro来验证  
-                //token.setRememberMe(true); //记住密码
-                currentUser.login(token);//验证角色和权限
+                // 使用shiro来验证
+				// 记住密码
+                //token.setRememberMe(true);
+                currentUser.login(token);
+				// 验证角色和权限
                 return renderSuccess("登录成功");
             } 
         }catch(UnknownAccountException ex){
@@ -184,9 +189,11 @@ public class UserController extends BaseController {
             		"phone");  
             Subject currentUser = SecurityUtils.getSubject();  
             if (!currentUser.isAuthenticated()){
-                //使用shiro来验证  
-                //token.setRememberMe(true);  //记住密码
-                currentUser.login(token);//验证角色和权限
+                // 使用shiro来验证
+				// 记住密码
+                //token.setRememberMe(true);
+                currentUser.login(token);
+				// 验证角色和权限
                 return renderSuccess("登录成功");
             } 
         }catch(UnknownAccountException ex){
@@ -267,7 +274,7 @@ public class UserController extends BaseController {
 				);
 		model.addAttribute("userAddrs", userAddrs);
 		
-		if(action != null && action.equals("userState")){
+		if(action != null && "userState".equals(action)){
 			return "redirect:/order/state";
 		}else{
 			return "front/user/userAddr";
@@ -353,11 +360,12 @@ public class UserController extends BaseController {
 	@RequestMapping("/shop")
 	public String userShop(Model model, HttpServletRequest request) {
 		User user = (User)request.getSession().getAttribute("user");
-		Map map = new HashMap();
+		Map map = new HashMap(16);
 		map.put("user_id", user.getId());
 		List<UserShop> userShops = this.userShopService.findUserShopList(map);
 		model.addAttribute("userShops", userShops);
-		model.addAttribute("total", userShopService.findUserShopTotalByUserId(user.getId())); // 获取商品总价
+		// 获取商品总价
+		model.addAttribute("total", userShopService.findUserShopTotalByUserId(user.getId()));
 		return "front/user/userShop";
 	}
 	

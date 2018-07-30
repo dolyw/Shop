@@ -25,6 +25,7 @@ public class UserAddrServiceImpl extends ServiceImpl<UserAddrMapper, UserAddr> i
 	/**
 	 * 设置默认地址，使用事物，必须先把之前默认设置非默认，再把当前设置默认，必须一起完成，失败就回退
 	 */
+	@Override
 	public Boolean updateUserAddrDefault(Long id) {
 		// TODO Auto-generated method stub
 		List<UserAddr> userAddrOlds = userAddrMapper.selectList(

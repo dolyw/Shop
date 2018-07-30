@@ -47,7 +47,7 @@ public class CookieUtils {
         Cookie[] cookies = request.getCookies(); 
         for (Cookie cookie : cookies) {
             //要获取名字进行比对，而不是直接用==表达式来作比较
-    		if (cookie.getName().equals("historyCookie")){  
+    		if ("historyCookie".equals(cookie.getName())){
     			historyCookie = cookie.getValue();
             } 
         }

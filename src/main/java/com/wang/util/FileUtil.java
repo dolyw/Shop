@@ -85,9 +85,11 @@ public class FileUtil {
 		String fileContent = "";
 		try {
 			File file = new File(filePathAndName);
-			if (file.isFile() && file.exists()) { // 判断文件是否存在
+			// 判断文件是否存在
+			if (file.isFile() && file.exists()) {
+				// 考虑到编码格式
 				InputStreamReader read = new InputStreamReader(
-						new FileInputStream(file), "UTF-8");// 考虑到编码格式
+						new FileInputStream(file), "UTF-8");
 				BufferedReader bufferedReader = new BufferedReader(read,
 						10 * 1024);
 				String lineTxt;

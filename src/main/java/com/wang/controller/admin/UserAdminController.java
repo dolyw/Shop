@@ -69,9 +69,11 @@ public class UserAdminController extends BaseController {
             		user.getPassword());  
             Subject currentUser = SecurityUtils.getSubject();  
             if (!currentUser.isAuthenticated()){
-                //使用shiro来验证  
-                //token.setRememberMe(true); //记住密码
-                currentUser.login(token);//验证角色和权限
+                // 使用shiro来验证
+                // 记住密码
+                //token.setRememberMe(true);
+                // 验证角色和权限
+                currentUser.login(token);
                 return renderSuccess("登录成功");
             } 
         }catch(UnknownAccountException ex){
@@ -115,7 +117,7 @@ public class UserAdminController extends BaseController {
         Page<User> selectPage = userService.findUserList(
         		new Page<User>(page_Num, page_Size), null);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
         map.put("data", selectPage.getRecords());
         return map;
@@ -143,7 +145,7 @@ public class UserAdminController extends BaseController {
 	@RequestMapping("/user/edit")
     public String userEdit(Model model, @RequestParam(value = "id", required = false) Long id) {
 		if (id != null) {
-			Map map = new HashMap();
+			Map map = new HashMap(16);
 			map.put("id", id);
 			List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
 			model.addAttribute("userEdit", users.get(0));
@@ -206,7 +208,7 @@ public class UserAdminController extends BaseController {
         		new Page<SearchRecord>(page_Num, page_Size), 
         		new EntityWrapper<SearchRecord>().where("1={0}", "1").orderBy("searchtime desc"));
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
         map.put("data", selectPage.getRecords());
         return map;

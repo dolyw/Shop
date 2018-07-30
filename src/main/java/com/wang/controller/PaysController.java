@@ -55,7 +55,7 @@ public class PaysController extends BaseController {
     public String return_url(Model model, HttpServletRequest request)
             throws Exception {
     	//获取支付宝GET过来反馈信息
-    	Map<String,String> params = new HashMap<String,String>();
+    	Map<String,String> params = new HashMap<String,String>(16);
     	Map<String,String[]> requestParams = request.getParameterMap();
     	for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
     		String name = (String) iter.next();
@@ -69,8 +69,9 @@ public class PaysController extends BaseController {
     		valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
     		params.put(name, valueStr);
     	}
-    	
-    	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+
+		// 调用SDK验证签名
+    	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
 
     	//——请在这里编写您的程序（以下代码仅作参考）——
     	if(signVerified) {
@@ -90,7 +91,7 @@ public class PaysController extends BaseController {
 			//注意：
 			// 同步本来不应该处理订单状态的，只是用来测试，正常生产环境本段代码应该屏蔽，只交给异步操作
 			// 订单处理
-			Map map = new HashMap();
+			Map map = new HashMap(16);
 			map.put("no", out_trade_no);
 			List<Orders> orders = ordersService.findOrdersListAdmin(
 					new Page<Orders>(1, 3), map).getRecords();
@@ -129,7 +130,7 @@ public class PaysController extends BaseController {
     public void notify_url(Model model, HttpServletRequest request)
             throws Exception {
     	//获取支付宝POST过来反馈信息
-    	Map<String,String> params = new HashMap<String,String>();
+    	Map<String,String> params = new HashMap<String,String>(16);
     	Map<String,String[]> requestParams = request.getParameterMap();
     	for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
     		String name = (String) iter.next();
@@ -143,8 +144,9 @@ public class PaysController extends BaseController {
     		valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
     		params.put(name, valueStr);
     	}
-    	
-    	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type); //调用SDK验证签名
+
+		// 调用SDK验证签名
+    	boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset, AlipayConfig.sign_type);
 
     	//——请在这里编写您的程序（以下代码仅作参考）——
     	
@@ -154,7 +156,8 @@ public class PaysController extends BaseController {
     	3、校验通知中的seller_id（或者seller_email) 是否为out_trade_no这笔单据的对应的操作方（有的时候，一个商户可能有多个seller_id/seller_email）
     	4、验证app_id是否为该商户本身。
     	*/
-    	if(signVerified) {//验证成功
+		// 验证成功
+    	if(signVerified) {
     		//商户订单号
     		String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
     		//付款金额
@@ -179,14 +182,14 @@ public class PaysController extends BaseController {
     		//System.out.println("trade_status:" + trade_status);
     		
     		
-    		if(trade_status.equals("TRADE_FINISHED")){
+    		if("TRADE_FINISHED".equals(trade_status)){
     			//判断该笔订单是否在商户网站中已经做过处理
     			//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
     			//如果有做过处理，不执行商户的业务程序
     			
     			//注意：
     			//退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
-    		}else if (trade_status.equals("TRADE_SUCCESS")){
+    		}else if ("TRADE_SUCCESS".equals(trade_status)){
     			//判断该笔订单是否在商户网站中已经做过处理
     			//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
     			//如果有做过处理，不执行商户的业务程序
@@ -194,7 +197,7 @@ public class PaysController extends BaseController {
     			//注意：
     			//付款完成后，支付宝系统发送该交易状态通知
     			// 订单处理
-        		Map map = new HashMap();
+        		Map map = new HashMap(16);
                 map.put("no", out_trade_no);
         		List<Orders> orders = ordersService.findOrdersListAdmin(
                 		new Page<Orders>(1, 3), map).getRecords();

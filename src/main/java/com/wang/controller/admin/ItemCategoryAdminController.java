@@ -82,7 +82,7 @@ public class ItemCategoryAdminController extends BaseController {
         		new Page<ItemCategory>(page_Num, page_Size),
         		new EntityWrapper<ItemCategory>().where("1={0}", "1").orderBy("addtime desc"));
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
         map.put("data", selectPage.getRecords());
         
@@ -116,7 +116,7 @@ public class ItemCategoryAdminController extends BaseController {
     @RequestMapping("/itemCategory/edit")
     public Object itemCategoryEdit(Model model, @RequestParam(value = "id", required = false) Long id) {
     	Page<ItemCategory> page = new Page<ItemCategory>(1, 3);
-    	Map map = new HashMap();
+    	Map map = new HashMap(16);
     	map.put("id", id);
     	return renderSuccess(itemCategoryService.findItemCategoryList(page, map).getRecords().get(0));
     }
@@ -166,7 +166,7 @@ public class ItemCategoryAdminController extends BaseController {
         Page<ItemCategoryDetail> selectPage = itemCategoryDetailService.findItemCategoryDetailList(
         		new Page<ItemCategoryDetail>(page_Num, page_Size), null);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
         map.put("data", selectPage.getRecords());
         return map;
@@ -199,7 +199,7 @@ public class ItemCategoryAdminController extends BaseController {
     @ResponseBody
     @RequestMapping("/itemCategoryDetail/edit")
     public Object itemCategoryDetailEdit(Model model, @RequestParam(value = "id", required = false) Long id) {
-    	Map map = new HashMap();
+    	Map map = new HashMap(16);
     	map.put("id", id);
     	return renderSuccess(itemCategoryDetailService.findItemCategoryDetailList(
     			new Page<ItemCategoryDetail>(1, 3), map).getRecords().get(0));

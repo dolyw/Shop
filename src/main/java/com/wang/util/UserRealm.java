@@ -38,16 +38,22 @@ public class UserRealm extends AuthorizingRealm {
 	private IRoleService roleService;
 	@Autowired
 	private IPermissionService permissionService;
-	
-	// 认证
+
+	/**
+	 * TODO：认证
+	 * @param authcToken
+	 * @return org.apache.shiro.authc.AuthenticationInfo
+	 * @author Wang926454
+	 * @date 2018/7/30 16:44
+	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
 		String pwd = new String(token.getPassword());
 		//System.out.println(pwd.equals("phone"));
 		// 密码为phone是手机短信登录
-		if(pwd.equals("phone")){
-			Map map = new HashMap();
+		if("phone".equals(pwd)){
+			Map map = new HashMap(16);
 			map.put("account", token.getUsername());
 			if(userService.findUserList(new Page<User>(1, 3), map).getRecords().size() == 0){
 				throw new UnknownAccountException();
@@ -58,7 +64,7 @@ public class UserRealm extends AuthorizingRealm {
 				return new SimpleAuthenticationInfo(token.getUsername(), token.getPassword(), getName());
 			}
 		}else{
-			Map map = new HashMap();
+			Map map = new HashMap(16);
 			map.put("account", token.getUsername());
 			if(userService.findUserList(new Page<User>(1, 3), map).getRecords().size() == 0){
 				throw new UnknownAccountException();
@@ -76,14 +82,18 @@ public class UserRealm extends AuthorizingRealm {
 		}
 		return null;
 	}
-	
-	// 授权
+
+	/**
+	 * 授权
+	 * @param principals
+	 * @return
+	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String account = (String) principals.getPrimaryPrincipal();
         //System.out.println(account);
         
-        Map map = new HashMap();
+        Map map = new HashMap(16);
 		map.put("account", account);
         List<Role> roles = roleService.findRoleListByUser(
         		new Page<Role>(1, 50), map).getRecords();
@@ -91,15 +101,15 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         if(roles.size() != 0){
 			for(Role role:roles){
-				//将数据库中的角色标签符放入
-				Map pmap = new HashMap();
+				// 将数据库中的角色标签符放入
+				Map pmap = new HashMap(16);
 				pmap.put("name", role.getName());
 				//System.out.println(role.getName());
 				List<Permission> permissions = permissionService.findPermissionListByRole(
 		        		new Page<Permission>(1, 1000), pmap).getRecords();
 				if(permissions.size() != 0){
 					for(Permission permission:permissions){
-						//将数据库中的权限标签符放入
+						// 将数据库中的权限标签符放入
 						authorizationInfo.addStringPermission(permission.getPercode());
 					}
 				}
