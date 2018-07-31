@@ -48,8 +48,8 @@
 							</div>
 						</div>
 						<div class="panel-body">
-				                <input id="item_id" name="item_id" value="${item.id}" type="hidden" />
-				                <input id="itemDetail_id" name="itemDetail_id" value="${item.itemDetail.id}" type="hidden" />
+				                <input id="itemId" name="itemId" value="${item.id}" type="hidden" />
+				                <input id="itemDetailId" name="itemDetailId" value="${item.itemDetail.id}" type="hidden" />
 				                <div class="col-md-6">
 				                <div class="form-group">
 								    <label for="name"><br/>名称</label>
@@ -81,7 +81,7 @@
 								<%-- <div class="col-md-6">
 								<div class="form-group">
 								    <label for="name">选择大类</label>
-								    <select class="form-control" id="itemCategoryDetail_id" name="itemCategoryDetail_id">
+								    <select class="form-control" id="itemCategoryDetailId" name="itemCategoryDetailId">
 								       <c:forEach var="itemCategoryDetail" items="${itemCategoryDetails}">
 								       		<c:if test="${itemCategoryDetail.id eq item.itemCategoryDetail.id}">
 								       			<option value="${itemCategoryDetail.id}" selected="selected">${itemCategoryDetail.name}</option>
@@ -97,7 +97,7 @@
 								  <!-- <div class="col-md-6"> -->
 								  <div class="form-group">
 								    <label for="name">选择小类</label>
-								    <select class="form-control" id="itemCategoryDetail_id" name="itemCategoryDetail_id">
+								    <select class="form-control" id="itemCategoryDetailId" name="itemCategoryDetailId">
 								       <c:forEach var="itemCategoryDetail" items="${itemCategoryDetails}">
 								       		<c:if test="${itemCategoryDetail.id eq item.itemCategoryDetail.id}">
 								       			<option value="${itemCategoryDetail.id}" selected="selected">${itemCategoryDetail.name}</option>
@@ -253,7 +253,7 @@
 								    <textarea class="form-control" rows="5" id="list" name="list" placeholder="请输入清单">${item.itemDetail.list}</textarea>
 								</div> --%>
 								
-								<input id="user_id" name="user_id" type="hidden" value="${sessionScope.user.id}">
+								<input id="userId" name="userId" type="hidden" value="${sessionScope.user.id}">
 								<input id="action" name="action" type="hidden" value="action">
 				                <input id="intro" name="intro" type="hidden" value="">
 				                <!-- <button type="reset" class="btn btn-default">取消</button> -->
@@ -323,7 +323,7 @@
 	initSample(); //初始化ckeditor
 	
 	function save() {
-		//alert($('#itemCategoryDetail_id').val());
+		//alert($('#itemCategoryDetailId').val());
 		var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/; // 价格正则
 		if($('#name').val().length <= 0){
 			layer.msg("名称不能为空");
@@ -334,7 +334,7 @@
 		}else if($('#stock').val().length <= 0){
 			layer.msg("库存不能为空");
 			//alert("库存不能为空");
-		}/* else if($('#itemCategoryDetail_id').val() ==  null){
+		}/* else if($('#itemCategoryDetailId').val() ==  null){
 			//layer.msg("请选择分类");
 			alert("请选择分类");
 		} */else{

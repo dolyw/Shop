@@ -6,6 +6,7 @@ package com.wang.util;
  * Date: 16/8/31
  * Time: 下午5:50
  * Describe: 封装Json返回信息
+ * @author Wang926454
  */
 public class JsonResult {
     private boolean success;

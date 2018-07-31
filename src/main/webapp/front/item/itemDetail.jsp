@@ -97,7 +97,7 @@
 					        <div>
 						     	<font class="shopprice" id="ECS_SHOPPRICE">￥${item.price}</font>
 						     	<span id="priceOld" name="priceOld" style="display:none">${item.price}</span>
-						     	<span id="item_id" name="item_id" style="display:none">${item.id}</span>
+						     	<span id="itemId" name="itemId" style="display:none">${item.id}</span>
 						    </div>
 					   </div>
 				     	 
@@ -262,7 +262,7 @@ function addshop(){
             data: {
             	count : $("#number").val(),
             	price : $("#price").html(),
-            	item_id : $("#item_id").html()
+            	itemId : $("#itemId").html()
             },
             dataType: 'json',
             success: function (data) {

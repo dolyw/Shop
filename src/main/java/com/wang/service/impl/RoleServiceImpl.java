@@ -14,7 +14,6 @@ import com.wang.service.IRoleService;
 /**
  * 角色
  * @author wang926454
- *
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
@@ -24,10 +23,6 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 	
 	@Override
 	public Page<Role> findRoleListByUser(Page<Role> page, Map map) {
-		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
-	    // page.setOptimizeCountSql(false);
-	    // 不查询总记录数
-	    // page.setSearchCount(false);
 	    return page.setRecords(roleMapper.findRoleListByUser(page, map));
 	}
 	

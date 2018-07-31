@@ -5,6 +5,10 @@ import java.util.List;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.wang.model.IndexCategory;
 
+/**
+ * 主页分类配置
+ * @author wang926454
+ */
 public interface IndexCategoryMapper extends BaseMapper<IndexCategory>{
 	/**
 	 * 后台系统设置主页分类获取当前设置
@@ -26,5 +30,5 @@ public interface IndexCategoryMapper extends BaseMapper<IndexCategory>{
 	 * 更新主页分类为null，不设置
 	 * @param id
 	 */
-	void updateItemcategory_id(Long id);
+	void updateItemcategoryId(Long id);
 }

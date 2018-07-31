@@ -5,7 +5,6 @@ import java.util.Date;
 /**
  * 搜索记录
  * @author MyPC
- *
  */
 public class SearchRecord extends SuperEntity {
 	private String account;

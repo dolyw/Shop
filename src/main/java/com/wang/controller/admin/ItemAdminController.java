@@ -30,7 +30,6 @@ import com.wang.service.IItemCategoryService;
 import com.wang.service.IItemDetailService;
 import com.wang.service.IItemService;
 import com.wang.util.FileUtil;
-import com.wang.util.PropertiesUtil;
 import com.wang.util.RandomUtil;
 
 /**
@@ -76,18 +75,16 @@ public class ItemAdminController extends BaseController {
     @ResponseBody
 	@RequestMapping("/item/getList")
     public Object getItemList(String pageNumber, String pageSize) {
-        if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+        if(StringUtils.isBlank(pageNumber)){
+            pageNumber = "1";
         }
-        if(!StringUtils.isNotBlank(pageSize))
+        if(StringUtils.isBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Page<Item> selectPage = itemService.findItemList(
-        		new Page<Item>(page_Num, page_Size), null);
+        		new Page<Item>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)), null);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
         Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
@@ -99,8 +96,8 @@ public class ItemAdminController extends BaseController {
      * 使用事物，商品和商品详细，要么一起添加或更新，要么不加或不更新，图片处理这块先这样把，判断是否存在ID，有就更新，没有就添加
      * @param item 商品类
      * @param itemDetail 商品详细类
-     * @param item_id 商品ID
-     * @param itemDetail_id 商品详细ID
+     * @param itemId 商品ID
+     * @param itemDetailId 商品详细ID
      * @param pic 主图
      * @param pic1 图一
      * @param pic2 图二
@@ -114,14 +111,12 @@ public class ItemAdminController extends BaseController {
     @RequiresPermissions(value={"item:save"}, logical= Logical.OR)
     @ResponseBody
     @RequestMapping("/item/save")
-    public Object itemSave(Item item, ItemDetail itemDetail, @RequestParam(value = "item_id", required = false) Long item_id
-    		, @RequestParam(value = "itemDetail_id", required = false) Long itemDetail_id, MultipartFile pic
+    public Object itemSave(Item item, ItemDetail itemDetail, @RequestParam(value = "itemId", required = false) Long itemId
+    		, @RequestParam(value = "itemDetailId", required = false) Long itemDetailId, MultipartFile pic
     		, MultipartFile pic1, MultipartFile pic2, MultipartFile pic3, MultipartFile pic4, MultipartFile pic5 
     		, HttpServletRequest request) throws IOException {
-    	item.setId(item_id);
-    	itemDetail.setId(itemDetail_id);
-    	
-    	//上传图片
+    	item.setId(itemId);
+    	itemDetail.setId(itemDetailId);
     	//上传到相对路径
         String path = request.getSession().getServletContext().getRealPath("static/upload");
     	//动态获取上传的绝对路径
@@ -130,7 +125,6 @@ public class ItemAdminController extends BaseController {
     	if(pic.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
         	item.setPicture(newFileName);
-            //System.out.println(path + newFileName);  
         	File targetFile = new File(path, newFileName);  
             if(!targetFile.exists()){  
                 targetFile.mkdirs();
@@ -143,8 +137,7 @@ public class ItemAdminController extends BaseController {
     	if(pic1.getOriginalFilename() != ""){
             String newFileName =  RandomUtil.getPicName() + ".jpg";
         	itemDetail.setPicture1(newFileName);
-        	File targetFile = new File(path, newFileName); 
-        	//System.out.println(path + newFileName);  
+        	File targetFile = new File(path, newFileName);
             if(!targetFile.exists()){  
                 targetFile.mkdirs();  
             }
@@ -154,8 +147,7 @@ public class ItemAdminController extends BaseController {
     	if(pic2.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
         	itemDetail.setPicture2(newFileName);
-        	File targetFile = new File(path, newFileName);  
-        	//System.out.println(path + newFileName);  
+        	File targetFile = new File(path, newFileName);
             if(!targetFile.exists()){  
                 targetFile.mkdirs();  
             } 
@@ -165,8 +157,7 @@ public class ItemAdminController extends BaseController {
     	if(pic3.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
         	itemDetail.setPicture3(newFileName);
-        	File targetFile = new File(path, newFileName); 
-        	//System.out.println(path + newFileName);  
+        	File targetFile = new File(path, newFileName);
             if(!targetFile.exists()){  
                 targetFile.mkdirs();  
             }
@@ -176,8 +167,7 @@ public class ItemAdminController extends BaseController {
     	if(pic4.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
         	itemDetail.setPicture4(newFileName);
-        	File targetFile = new File(path, newFileName); 
-        	//System.out.println(path + newFileName);  
+        	File targetFile = new File(path, newFileName);
             if(!targetFile.exists()){  
                 targetFile.mkdirs();
             }
@@ -187,15 +177,13 @@ public class ItemAdminController extends BaseController {
     	if(pic5.getOriginalFilename() != ""){
     		String newFileName =  RandomUtil.getPicName() + ".jpg";
         	itemDetail.setPicture5(newFileName);
-        	File targetFile = new File(path, newFileName);  
-        	//System.out.println(path + newFileName);  
+        	File targetFile = new File(path, newFileName);
             if(!targetFile.exists()){  
                 targetFile.mkdirs();
             } 
             pic5.transferTo(targetFile);
             FileUtil.changeFolderPermission(targetFile);
     	}
-    	
     	if (item.getId() == null) {
         	item.setAddtime(new Date());
             return itemService.addItem(item, itemDetail) ? renderSuccess("添加成功") : renderError("添加失败");
@@ -208,14 +196,14 @@ public class ItemAdminController extends BaseController {
     /**
      * 使用事物，商品和商品详细，要么一起删，要么不删
      * @param id
-     * @param itemDetail_id
+     * @param itemDetailId
      * @return
      */
     @RequiresPermissions(value={"item:delete"}, logical= Logical.OR)
     @ResponseBody
     @RequestMapping("/item/delete")
-    public Object itemDelete(@RequestParam(value = "id", required = false) Long id, Long itemDetail_id) {
-    	return itemService.deleteItem(id, itemDetail_id) ? renderSuccess("删除成功") : renderError("删除失败");
+    public Object itemDelete(@RequestParam(value = "id", required = false) Long id, Long itemDetailId) {
+    	return itemService.deleteItem(id, itemDetailId) ? renderSuccess("删除成功") : renderError("删除失败");
     }
     
     /**

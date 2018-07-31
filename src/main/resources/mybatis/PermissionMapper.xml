@@ -6,14 +6,14 @@
 <mapper namespace="com.wang.mapper.PermissionMapper">
 
 	<resultMap type="Permission" id="permissionResultMap">
-		<id column="p_id" property="id" />
-		<result column="p_name" property="name" />
-		<result column="p_percode" property="percode" />
+		<id column="pId" property="id" />
+		<result column="pName" property="name" />
+		<result column="pPercode" property="percode" />
 	</resultMap>
 	
 	<select id="findPermissionListByRole" resultMap="permissionResultMap">
 		SELECT
-			c.id p_id,c.name p_name,c.percode p_percode
+			c.id pId,c.name pName,c.percode pPercode
 		FROM
 			role a
 		INNER JOIN role_permission b ON a.id = b.role_id

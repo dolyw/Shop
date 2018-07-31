@@ -6,16 +6,15 @@ import java.util.List;
 /**
  * 订单
  * @author wang926454
- *
  */
 public class Orders extends SuperEntity {
 	private String no;
-	private String trade_no;
-	public String getTrade_no() {
-		return trade_no;
+	private String tradeNo;
+	public String getTradeNo() {
+		return tradeNo;
 	}
-	public void setTrade_no(String trade_no) {
-		this.trade_no = trade_no;
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
 	}
 	private String price;
 	private int state;
@@ -29,7 +28,7 @@ public class Orders extends SuperEntity {
 		this.courierno = courierno;
 	}
 	private Date addtime;
-	private Long user_id;
+	private Long userId;
 	private User user;
 	private List<OrderItem> orderItems;
 	private String name;
@@ -66,11 +65,11 @@ public class Orders extends SuperEntity {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Long getUser_id() {
-		return user_id;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public int getPay() {
 		return pay;

@@ -55,7 +55,6 @@ public class RandomUtil {
 		UUID uuid = UUID.randomUUID();
         String str = uuid.toString(); 
         String uuidStr = str.replace("-", "");
-        //System.out.println(uuidStr);
         return uuidStr;
     }
 }

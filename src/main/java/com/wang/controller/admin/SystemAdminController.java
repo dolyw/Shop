@@ -71,7 +71,7 @@ public class SystemAdminController extends BaseController {
     
     /**
      * 主页分类保存，一共12个
-     * @param itemCategory_ids
+     * @param itemCategoryIds
      * @param request
      * @return
      */
@@ -79,26 +79,26 @@ public class SystemAdminController extends BaseController {
     @ResponseBody
     @RequestMapping("/system/indexCategorySave")
 	public Object indexCategorySave(
-			@RequestParam("itemCategory_id")Long[] itemCategory_ids, 
+			@RequestParam("itemCategory_id")Long[] itemCategoryIds,
 			HttpServletRequest request) {
     	IndexCategory indexCategory = new IndexCategory();
-    	for(int i=0;i<itemCategory_ids.length;i++){
+    	for(int i = 0; i< itemCategoryIds.length; i++){
 			// int转换Long
     		Long l = new Long((long)i);
-    		Long j = new Long((long)itemCategory_ids[i]);
+    		Long j = new Long((long) itemCategoryIds[i]);
     		if(j == 0){
-    			if(indexCategoryService.findIndexCategory(l+1).getItemCategory_id() == null){
+    			if(indexCategoryService.findIndexCategory(l+1).getItemCategoryId() == null){
     				continue;
         		}else{
-            		indexCategoryService.updateItemcategory_id(l+1);
+            		indexCategoryService.updateItemcategoryId(l+1);
         		}
 			}else{
 				// 从1开始
 				indexCategory.setId(l+1);
-        		indexCategory.setItemCategory_id(j);
+        		indexCategory.setItemCategoryId(j);
         		indexCategoryService.updateById(indexCategory);
 			}
-    		//System.out.println(itemCategory_ids[i]);
+    		//System.out.println(itemCategoryIds[i]);
     	}
     	// 更新前台
     	List<IndexCategory> indexCategorysApplication = indexCategoryService.findIndexCategoryList();

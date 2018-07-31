@@ -103,7 +103,7 @@
 								</div> --%>
 								<div class="form-group">
 								    <label for="name">选择大类</label>
-								    <select class="form-control" id="itemCategory_id" name="itemCategory_id">
+								    <select class="form-control" id="itemCategoryId" name="itemCategoryId">
 								      
 								    </select>
 								  </div>
@@ -296,7 +296,7 @@
 	            		            success: function (data) {
 	            		                if (data.success) {
 	            		                	//alert(data.obj.name);
-	            		                	$("#itemCategory_id").empty();
+	            		                	$("#itemCategoryId").empty();
 	            		                	getItemCategory();
 	            		                	$("#id").val(data.obj.id);
 	            		                	$("#name").val(data.obj.name);
@@ -371,7 +371,7 @@
 	            dataType: 'json',
 	            success: function (data) {
 	                if (data.success) {
-	                	var select = $("#itemCategory_id");
+	                	var select = $("#itemCategoryId");
 	                	for(var i in data.obj){    
 	                		select.append("<option value='"+ data.obj[i].id +"'>"+ data.obj[i].name +"</option>");
 	                	}
@@ -397,7 +397,7 @@
 		}
 	
 		function clearForm() {
-			$("#itemCategory_id").empty();
+			$("#itemCategoryId").empty();
 			getItemCategory();
 			$("#id").val("");
         	$("#name").val("");

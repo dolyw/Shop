@@ -21,7 +21,6 @@ import com.wang.util.StringUtil;
 /**
  * 用户
  * @author wang926454
- *
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
@@ -35,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
 	@Override
 	public Page<User> findUserList(Page<User> page, Map map) {
-		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
+		// 不进行count sql优化，解决MP无法自动优化SQL问题
 	    // page.setOptimizeCountSql(false);
 	    // 不查询总记录数
 	    // page.setSearchCount(false);
@@ -47,16 +46,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	 */
 	@Override
 	public boolean addUserShop(UserShop userShop) {
-		/*int stock = itemMapper.findItemStock(item.getId()) - userShop.getCount();
+		/**int stock = itemMapper.findItemStock(item.getId()) - userShop.getCount();
 		if(stock < 0){
 			throw new Exception("商品库存为负!");
 		}
 		item.setStock(stock);
 		itemMapper.updateById(item);*/
-		
 		Map map = new HashMap(16);
-		map.put("user_id", userShop.getUser_id());
-		map.put("item_id", userShop.getItem_id());
+		map.put("userId", userShop.getUserId());
+		map.put("itemId", userShop.getItemId());
 		List<UserShop> userShops = this.userShopMapper.findUserShopList(map);
 		// 判断当前商品有没有存在购物车中，有就加上当前数量，没有就新增
 		if(userShops.size() == 0){

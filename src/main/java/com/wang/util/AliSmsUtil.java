@@ -32,17 +32,22 @@ public class AliSmsUtil {
     /**
      * 产品名称:云通信短信API产品,开发者无需替换
      */
-    static final String product = "Dysmsapi";
+    static final String PRODUCT = "Dysmsapi";
     /**
      * 产品域名,开发者无需替换
      */
-    static final String domain = "dysmsapi.aliyuncs.com";
+    static final String DOMAIN = "dysmsapi.aliyuncs.com";
 
     /**
      * TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
      */
-    static final String accessKeyId = "XXXXX";
-    static final String accessKeySecret = "XXXXX";
+    static final String ACCESS_KEY_ID = "XXXXX";
+    static final String ACCESS_KEY_SECRET = "XXXXX";
+
+    /**
+     * OK状态
+     */
+    static final String CODE_STATUS_OK = "OK";
     
     public static SendSmsResponse sendSms(String phone, String checkCode) throws ClientException {
 
@@ -51,8 +56,8 @@ public class AliSmsUtil {
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
 
         //初始化acsClient,暂不支持region化
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", PRODUCT, DOMAIN);
         IAcsClient acsClient = new DefaultAcsClient(profile);
 
         //组装请求对象-具体描述见控制台-文档部分内容
@@ -72,7 +77,7 @@ public class AliSmsUtil {
         //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
         request.setOutId("yourOutId");
 
-        //hint 此处可能会抛出异常，注意catch
+        //此处可能会抛出异常，注意catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
 
         return sendSmsResponse;
@@ -85,8 +90,8 @@ public class AliSmsUtil {
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
 
         //初始化acsClient,暂不支持region化
-        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
+        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", ACCESS_KEY_ID, ACCESS_KEY_SECRET);
+        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", PRODUCT, DOMAIN);
         IAcsClient acsClient = new DefaultAcsClient(profile);
 
         //组装请求对象
@@ -131,8 +136,8 @@ public class AliSmsUtil {
 
         //Thread.sleep(1000L);
 
-        //查明细
-        if(response.getCode() != null && "OK".equals(response.getCode())) {
+        // 查明细
+        if(response.getCode() != null && CODE_STATUS_OK.equals(response.getCode())) {
             QuerySendDetailsResponse querySendDetailsResponse = querySendDetails(phone, response.getBizId());
             System.out.println("短信明细查询接口返回数据----------------");
             // OK
@@ -140,7 +145,7 @@ public class AliSmsUtil {
             map.put("status", querySendDetailsResponse.getCode());
             // OK 触发分钟级流控Permits:1
             System.out.println("Message=" + querySendDetailsResponse.getMessage());
-            int i = 0;
+            /*int i = 0;
             for(QuerySendDetailsResponse.SmsSendDetailDTO smsSendDetailDTO : querySendDetailsResponse.getSmsSendDetailDTOs())
             {
                 //System.out.println("SmsSendDetailDTO["+i+"]:");
@@ -154,7 +159,7 @@ public class AliSmsUtil {
                 //System.out.println("Template=" + smsSendDetailDTO.getTemplateCode());
             }
             //System.out.println("TotalCount=" + querySendDetailsResponse.getTotalCount());
-            //System.out.println("RequestId=" + querySendDetailsResponse.getRequestId());
+            //System.out.println("RequestId=" + querySendDetailsResponse.getRequestId());*/
         }
         return map;
     }

@@ -68,18 +68,16 @@ public class ItemCategoryAdminController extends BaseController {
     @ResponseBody
 	@RequestMapping("/itemCategory/getList")
     public Object getItemCategoryList(String pageNumber, String pageSize) {
-        if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+        if(StringUtils.isBlank(pageNumber)){
+            pageNumber = "1";
         }
-        if(!StringUtils.isNotBlank(pageSize))
+        if(StringUtils.isBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Page<ItemCategory> selectPage = itemCategoryService.findItemCategoryListWrapper(
-        		new Page<ItemCategory>(page_Num, page_Size),
+        		new Page<ItemCategory>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)),
         		new EntityWrapper<ItemCategory>().where("1={0}", "1").orderBy("addtime desc"));
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
         Map<String, Object> map = new HashMap<String, Object>(16);
@@ -108,7 +106,6 @@ public class ItemCategoryAdminController extends BaseController {
     
     /**
      * 后台商品分类AJAX获取当前商品分类的参数
-     * @param itemCategory
      * @return
      */
     @RequiresPermissions(value={"itemCategory:save"}, logical= Logical.OR)
@@ -153,18 +150,16 @@ public class ItemCategoryAdminController extends BaseController {
     @ResponseBody
 	@RequestMapping("/itemCategoryDetail/getList")
     public Object getItemCategoryDetailList(String pageNumber, String pageSize) {
-        if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+        if(StringUtils.isBlank(pageNumber)){
+            pageNumber = "1";
         }
-        if(!StringUtils.isNotBlank(pageSize))
+        if(StringUtils.isBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Page<ItemCategoryDetail> selectPage = itemCategoryDetailService.findItemCategoryDetailList(
-        		new Page<ItemCategoryDetail>(page_Num, page_Size), null);
+        		new Page<ItemCategoryDetail>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)), null);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
         Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());

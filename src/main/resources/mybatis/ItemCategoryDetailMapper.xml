@@ -10,16 +10,16 @@
 		<result column="name" property="name" />
 		<result column="addtime" property="addtime" />
 		<association property="itemCategory" javaType="ItemCategory">
-			<id column="itemCategory_id" property="id"/>
-			<result column="itemCategory_name" property="name" />
-			<result column="itemCategory_addtime" property="addtime" />
+			<id column="itemCategoryId" property="id"/>
+			<result column="itemCategoryName" property="name" />
+			<result column="itemCategoryAddtime" property="addtime" />
 		</association>
 	</resultMap>
 	
 	<select id="findItemCategoryDetailList" resultMap="itemCategoryDetailResultMap">
     	SELECT 
     		icd.id,icd.name,icd.addtime,
-    		ic.id itemCategory_id,ic.name itemCategory_name,ic.addtime itemCategory_addtime
+    		ic.id itemCategoryId,ic.name itemCategoryName,ic.addtime itemCategoryAddtime
     	FROM 
     		itemcategorydetail icd left join itemcategory ic
     	on ic.id=icd.itemCategory_id

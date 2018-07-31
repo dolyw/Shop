@@ -18,10 +18,13 @@ public interface UserShopMapper extends BaseMapper<UserShop>{
 	 * @return
 	 */
 	List<UserShop> findUserShopList(Map map);
+
 	/**
-	 * 查询购物车总价
-	 * @param user_id
-	 * @return
+	 * TODO：查询购物车总价
+	 * @param userId
+	 * @return java.lang.String
+	 * @author Wang926454
+	 * @date 2018/7/30 18:51
 	 */
-	String findUserShopTotalByUserId(Long user_id);
+	String findUserShopTotalByUserId(Long userId);
 }

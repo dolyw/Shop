@@ -3,7 +3,6 @@ package com.wang.model;
 /**
  * 权限
  * @author wang926454
- *
  */
 public class Permission extends SuperEntity {
 	private String name;

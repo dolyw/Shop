@@ -104,18 +104,16 @@ public class UserAdminController extends BaseController {
     @ResponseBody
 	@RequestMapping("/user/getList")
     public Object getUserList(String pageNumber, String pageSize) {
-        if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+        if(StringUtils.isBlank(pageNumber)){
+            pageNumber = "1";
         }
-        if(!StringUtils.isNotBlank(pageSize))
+        if(StringUtils.isBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Page<User> selectPage = userService.findUserList(
-        		new Page<User>(page_Num, page_Size), null);
+        		new Page<User>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)), null);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
         Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());
@@ -195,17 +193,15 @@ public class UserAdminController extends BaseController {
 	@RequestMapping("/user/getSearchRecordList")
     public Object getSearchRecordList(String pageNumber, String pageSize) {
         if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+            pageNumber = "1";
         }
         if(!StringUtils.isNotBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Page<SearchRecord> selectPage = this.searchRecordService.selectPage(
-        		new Page<SearchRecord>(page_Num, page_Size), 
+        		new Page<SearchRecord>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)),
         		new EntityWrapper<SearchRecord>().where("1={0}", "1").orderBy("searchtime desc"));
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
         Map<String, Object> map = new HashMap<String, Object>(16);

@@ -31,9 +31,9 @@ percode varchar(128) not null unique COMMENT '权限代码字符串'
 
 CREATE TABLE user_role (
 id int primary key auto_increment COMMENT "ID",
-user_id int COMMENT '用户id',
+userId int COMMENT '用户id',
 role_id int COMMENT '角色id',
-foreign key (user_id) references user (id),
+foreign key (userId) references user (id),
 foreign key (role_id) references role (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "用户角色表";
 
@@ -64,9 +64,9 @@ addr varchar(255) not null COMMENT "详细地址",
 post varchar(20) COMMENT "邮政编码", 
 addtime datetime not null COMMENT "添加时间", 
 defaults int not null COMMENT "默认地址 1是 0不是",
-user_id integer, 
+userId integer,
 primary key (id),
-foreign key (user_id) references user (id)
+foreign key (userId) references user (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "收货地址表";
 
 
@@ -78,16 +78,16 @@ addtime datetime not null COMMENT "添加时间"
 
 create table indexcategory (
 id int primary key auto_increment COMMENT "ID",
-itemCategory_id integer COMMENT "item大类外键",
-foreign key (itemCategory_id) references itemCategory (id)
+itemCategoryId integer COMMENT "item大类外键",
+foreign key (itemCategoryId) references itemCategory (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "主页分类配置表";
 
 create table itemcategorydetail (
 id int primary key auto_increment COMMENT "ID",
 name varchar(80) not null unique COMMENT "名称",
 addtime datetime not null COMMENT "添加时间",
-itemCategory_id integer COMMENT "item外键",
-foreign key (itemCategory_id) references itemCategory (id)
+itemCategoryId integer COMMENT "item外键",
+foreign key (itemCategoryId) references itemCategory (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "商品详细分类表";
 
 
@@ -115,18 +115,18 @@ model varchar(50) COMMENT "型号",
 stock int not null COMMENT "库存",
 picture varchar(80) COMMENT "主图",
 addtime datetime not null COMMENT "添加时间",
-itemCategoryDetail_id integer COMMENT "item外键",
-user_id integer COMMENT "user添加外键",
-itemDetail_id integer COMMENT "itemDetail外键",
-foreign key (itemDetail_id) references itemDetail (id),
-foreign key (user_id) references user (id),
-foreign key (itemCategoryDetail_id) references itemCategoryDetail (id)
+itemCategoryDetailId integer COMMENT "item外键",
+userId integer COMMENT "user添加外键",
+itemDetailId integer COMMENT "itemDetail外键",
+foreign key (itemDetailId) references itemDetail (id),
+foreign key (userId) references user (id),
+foreign key (itemCategoryDetailId) references itemCategoryDetail (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "商品表";
 
 create table orders (
 id int primary key auto_increment COMMENT "ID",
 no varchar(80) not null unique COMMENT "订单号",
-trade_no varchar(80) not null unique COMMENT "支付宝交易号",
+tradeNo varchar(80) not null unique COMMENT "支付宝交易号",
 price varchar(20) not null COMMENT "价格合计",
 state int not null COMMENT "状态1未付款 2已付款但未发货 3已发货但未确认收货 4已确认交易成功",
 pay int not null COMMENT "1支付宝 2微信",
@@ -136,8 +136,8 @@ name varchar(80) not null COMMENT "收件人",
 phone varchar(80) not null COMMENT "手机号",
 addr varchar(80) not null COMMENT "地址",
 addtime datetime not null COMMENT "添加时间",
-user_id integer COMMENT "user外键",
-foreign key (user_id) references user (id)
+userId integer COMMENT "user外键",
+foreign key (userId) references user (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "订单表";
 
 
@@ -145,10 +145,10 @@ create table orderitem (
 id int primary key auto_increment COMMENT "ID",
 count int not null COMMENT "数量",
 price varchar(20) not null COMMENT "小计",
-item_id integer COMMENT "item外键",
-orders_id integer COMMENT "order外键",
-foreign key (item_id) references item (id),
-foreign key (orders_id) references orders (id)
+itemId integer COMMENT "item外键",
+ordersId integer COMMENT "order外键",
+foreign key (itemId) references item (id),
+foreign key (ordersId) references orders (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "订单条目表";
 
 create table usershop
@@ -157,28 +157,28 @@ id integer auto_increment COMMENT "ID",
 count int not null COMMENT "数量",
 price varchar(20) not null COMMENT "小计",
 addtime datetime not null COMMENT "添加时间", 
-user_id integer COMMENT "user外键", 
-item_id integer COMMENT "item外键",
+userId integer COMMENT "user外键",
+itemId integer COMMENT "item外键",
 primary key (id),
-foreign key (item_id) references item (id),
-foreign key (user_id) references user (id)
+foreign key (itemId) references item (id),
+foreign key (userId) references user (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "购物车表";
 
 /*create table itemrecord (
 id int primary key auto_increment COMMENT "ID",
-user_id integer, 
-item_id integer, 
-foreign key (user_id) references user (id),
-foreign key (item_id) references item (id)
+userId integer,
+itemId integer,
+foreign key (userId) references user (id),
+foreign key (itemId) references item (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "商品浏览记录表";*/
 
 /*create table user_item 
 (
 id int primary key auto_increment COMMENT "ID",
-user_id integer, 
-item_id integer, 
-foreign key (user_id) references user (id),
-foreign key (item_id) references item (id)
+userId integer,
+itemId integer,
+foreign key (userId) references user (id),
+foreign key (itemId) references item (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "用户商品收藏表";*/
 
 create table plate
@@ -202,11 +202,11 @@ reply int COMMENT "回复数",
 lastname varchar(40) not null COMMENT "最后回复人",
 lasttime datetime not null COMMENT "最后回复时间",
 addtime datetime not null COMMENT "添加时间", 
-user_id integer COMMENT "user外键", 
+userId integer COMMENT "user外键",
 plate_id integer COMMENT "plate外键",
 primary key (id),
 foreign key (plate_id) references plate (id),
-foreign key (user_id) references user (id)
+foreign key (userId) references user (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "主题表";
 
 create table reply
@@ -215,10 +215,10 @@ id integer auto_increment COMMENT "ID",
 cont text not null COMMENT "内容",
 addtime datetime not null COMMENT "添加时间", 
 parent_id int  COMMENT "回复贴ID",
-user_id integer COMMENT "user外键",
+userId integer COMMENT "user外键",
 post_id integer COMMENT "post外键",
 primary key (id),
 foreign key (post_id) references post (id),
-foreign key (user_id) references user (id)
+foreign key (userId) references user (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT "回复表";
 

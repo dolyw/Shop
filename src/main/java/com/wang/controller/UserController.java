@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.wang.util.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -71,13 +72,12 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping("/register")
     public Object register(User user, HttpServletRequest request) throws Exception {
-		//System.out.println(user.getAccount());
 		Map map = new HashMap(16);
 		map.put("account", user.getAccount());
 		List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
 		if(users.size() > 0){
 			return renderError("该手机号已注册");
-		}else if(user.getPassword().length() < 6){
+		}else if(user.getPassword().length() < Constants.PASSWORD_LENGTH){
 			return renderError("密码不得少于6位");
 		}else{
 			user.setRegtime(new Date());
@@ -110,7 +110,6 @@ public class UserController extends BaseController {
 	@ResponseBody
 	@RequestMapping("/existUser")
     public Object existUser(User user, HttpServletRequest request) throws Exception {
-		//System.out.println(user.getAccount());
 		Map map = new HashMap(16);
 		map.put("account", user.getAccount());
 		List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
@@ -160,7 +159,7 @@ public class UserController extends BaseController {
             if (!currentUser.isAuthenticated()){
                 // 使用shiro来验证
 				// 记住密码
-                //token.setRememberMe(true);
+                // token.setRememberMe(true);
                 currentUser.login(token);
 				// 验证角色和权限
                 return renderSuccess("登录成功");
@@ -191,7 +190,7 @@ public class UserController extends BaseController {
             if (!currentUser.isAuthenticated()){
                 // 使用shiro来验证
 				// 记住密码
-                //token.setRememberMe(true);
+                // token.setRememberMe(true);
                 currentUser.login(token);
 				// 验证角色和权限
                 return renderSuccess("登录成功");
@@ -259,7 +258,7 @@ public class UserController extends BaseController {
 			if (userAddr.getId() == null){
 				userAddr.setDefaults(0);
 				userAddr.setAddtime(new Date());
-				userAddr.setUser_id(user.getId());
+				userAddr.setUserId(user.getId());
 				String addrDetail = cmbProvince + "省" + cmbCity + cmbArea + userAddr.getAddr();
 				userAddr.setAddr(addrDetail);
 				this.userAddrService.insert(userAddr);
@@ -274,7 +273,7 @@ public class UserController extends BaseController {
 				);
 		model.addAttribute("userAddrs", userAddrs);
 		
-		if(action != null && "userState".equals(action)){
+		if(action != null && Constants.PAGE_STATUS.equals(action)){
 			return "redirect:/order/state";
 		}else{
 			return "front/user/userAddr";
@@ -336,10 +335,10 @@ public class UserController extends BaseController {
 			// 判断商品数量和价格是否异常
 			Item item = new Item();
 			if(user != null && userShop.getCount() != 0 && userShop.getPrice() != null){
-				userShop.setUser_id(user.getId());
+				userShop.setUserId(user.getId());
 				userShop.setAddtime(new Date());
 				
-				item.setId(userShop.getItem_id());
+				item.setId(userShop.getItemId());
 				// 事物处理，商品添加到购物车的同时，商品库存减一  // 搞错了，应该是订单才这样处理，只需要添加到购物车就好
 				userService.addUserShop(userShop);
 				return renderSuccess("成功加入购物车");
@@ -361,7 +360,7 @@ public class UserController extends BaseController {
 	public String userShop(Model model, HttpServletRequest request) {
 		User user = (User)request.getSession().getAttribute("user");
 		Map map = new HashMap(16);
-		map.put("user_id", user.getId());
+		map.put("userId", user.getId());
 		List<UserShop> userShops = this.userShopService.findUserShopList(map);
 		model.addAttribute("userShops", userShops);
 		// 获取商品总价

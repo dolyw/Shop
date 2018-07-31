@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletRequest;
  * @Date 2018/5/15 11:09
  */
 public class CookieUtils {
+
+    /**
+     * 最大Cookie数
+     */
+    private static final int COOKIE_MAX_NUM = 3;
+
     /**
      * 通过CookieName获取Cookie
      * @param name
@@ -20,7 +26,7 @@ public class CookieUtils {
      */
 	public static Cookie getCookieByName(String name,Cookie[] cookies){
         //传入了一串cookie的值，通过这个name找到
-        if(null==cookies){
+        if(null == cookies){
             return null;
         }else{
             for (Cookie cookie : cookies) {
@@ -39,10 +45,8 @@ public class CookieUtils {
      * @param request
      * @return
      */
-    public static String buildCookie(String id, HttpServletRequest request) {  
-        
-        String historyCookie = null;  
-          
+    public static String buildCookie(String id, HttpServletRequest request) {
+        String historyCookie = null;
         //得到请求中带来的cookie值 
         Cookie[] cookies = request.getCookies(); 
         for (Cookie cookie : cookies) {
@@ -51,30 +55,25 @@ public class CookieUtils {
     			historyCookie = cookie.getValue();
             } 
         }
-          
         //如果为空返回当前商品的id  
         if (historyCookie == null){  
             return id;  
-        }  
-          
-        LinkedList<String> list = new LinkedList<String>( Arrays.asList((historyCookie.split("#"))));  
-          
+        }
+        LinkedList<String> list = new LinkedList<String>( Arrays.asList((historyCookie.split("#"))));
         //对不同的情况进行分析返回id的值  
         if (list.contains(id)){  
             list.remove(id);  
         }else{  
-            if (list.size() >= 3){  
+            if (list.size() >= COOKIE_MAX_NUM){
                 list.removeLast();  
             }  
         }  
-        list.addFirst(id);  
-          
+        list.addFirst(id);
         StringBuffer sb = new StringBuffer();  
         for (String sid : list){  
             sb.append(sid + "#");  
         }  
-        sb.deleteCharAt(sb.length()-1);  
-          
+        sb.deleteCharAt(sb.length()-1);
         return sb.toString();  
     }
 }

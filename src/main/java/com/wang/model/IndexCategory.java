@@ -3,17 +3,16 @@ package com.wang.model;
 /**
  * 主页分类配置
  * @author wang926454
- *
  */
 public class IndexCategory extends SuperEntity {
 
-	private Long itemCategory_id;
+	private Long itemCategoryId;
 	private ItemCategory itemCategory;
-	public Long getItemCategory_id() {
-		return itemCategory_id;
+	public Long getItemCategoryId() {
+		return itemCategoryId;
 	}
-	public void setItemCategory_id(Long itemCategory_id) {
-		this.itemCategory_id = itemCategory_id;
+	public void setItemCategoryId(Long itemCategoryId) {
+		this.itemCategoryId = itemCategoryId;
 	}
 	public ItemCategory getItemCategory() {
 		return itemCategory;

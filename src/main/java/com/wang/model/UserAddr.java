@@ -5,7 +5,6 @@ import java.util.Date;
 /**
  * 收获地址
  * @author MyPC
- *
  */
 public class UserAddr extends SuperEntity {
 	private String addr;
@@ -13,12 +12,12 @@ public class UserAddr extends SuperEntity {
 	private String name;
 	private String phone;
 	private int defaults;
-	private Long user_id;
-	public Long getUser_id() {
-		return user_id;
+	private Long userId;
+	public Long getUserId() {
+		return userId;
 	}
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	public String getName() {
 		return name;

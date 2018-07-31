@@ -18,7 +18,6 @@ import java.util.Set;
 /**
  * 文件操作
  * @author wang926454
- *
  */
 public class FileUtil {
 	/**
@@ -120,11 +119,9 @@ public class FileUtil {
 				System.out.println("删除单个文件" + filePathAndName + "成功！");
 				return true;
 			} else {
-				//System.out.println("删除单个文件" + filePathAndName + "失败！");
 				return false;
 			}
 		} else {
-			//System.out.println("删除单个文件失败：" + filePathAndName + "不存在！");
 			return false;
 		}
 	}
@@ -150,5 +147,4 @@ public class FileUtil {
 	        //logger.log(Level.SEVERE, "Change folder " + dirFile.getAbsolutePath() + " permission failed.", e);
 	    }
     }
-	
 }

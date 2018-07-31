@@ -10,16 +10,16 @@
 		<result column="name" property="name" />
 		<result column="addtime" property="addtime" />
 		<collection property="itemCategoryDetails" ofType="ItemCategoryDetail">
-			<id column="itemCategoryDetail_id" property="id"/>
-			<result column="itemCategoryDetail_name" property="name" />
-			<result column="itemCategoryDetail_addtime" property="addtime" />
+			<id column="itemCategoryDetailId" property="id"/>
+			<result column="itemCategoryDetailName" property="name" />
+			<result column="itemCategoryDetailAddtime" property="addtime" />
 		</collection>
 	</resultMap>
 	
 	<select id="findItemCategoryList" resultMap="itemCategoryResultMap">
     	SELECT 
     		ic.id,ic.name,ic.addtime,
-    		icd.id itemCategoryDetail_id,icd.name itemCategoryDetail_name,icd.addtime itemCategoryDetail_addtimes
+    		icd.id itemCategoryDetailId,icd.name itemCategoryDetailName,icd.addtime itemCategoryDetailAddtimes
     	FROM 
     		itemcategory ic left join itemcategorydetail icd
     	on ic.id=icd.itemCategory_id

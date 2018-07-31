@@ -12,6 +12,11 @@ import com.wang.mapper.ItemCategoryMapper;
 import com.wang.model.ItemCategory;
 import com.wang.service.IItemCategoryService;
 
+/**
+ * TODO：商品分类
+ * @author Wang926454
+ * @date 2018/7/30 18:50
+ */
 @Service
 public class ItemCategoryServiceImpl extends ServiceImpl<ItemCategoryMapper, ItemCategory> implements IItemCategoryService {
 	@Autowired
@@ -19,10 +24,6 @@ public class ItemCategoryServiceImpl extends ServiceImpl<ItemCategoryMapper, Ite
 
 	@Override
 	public Page<ItemCategory> findItemCategoryList(Page<ItemCategory> page, Map map) {
-		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
-	    // page.setOptimizeCountSql(false);
-	    // 不查询总记录数
-	    // page.setSearchCount(false);
 	    return page.setRecords(itemCategoryMapper.findItemCategoryList(page, map));
 	}
 

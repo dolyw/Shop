@@ -10,6 +10,10 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.wang.model.Item;
 
+/**
+ * 商品
+ * @author wang926454
+ */
 public interface ItemMapper extends BaseMapper<Item>{
 	/**
 	 * 查询商品列表

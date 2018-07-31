@@ -14,30 +14,23 @@ import com.wang.service.IUserShopService;
 /**
  * 购物车操作
  * @author wang926454
- *
  */
 @Service
 public class UserShopServiceImpl extends ServiceImpl<UserShopMapper, UserShop> implements IUserShopService {
 
 	@Autowired
 	private UserShopMapper userShopMapper;
-	
-	/**
-	 * 查询购物车商品
-	 */
+
 	@Override
 	public List<UserShop> findUserShopList(Map map) {
 		// TODO Auto-generated method stub
 		return userShopMapper.findUserShopList(map);
 	}
-	
-	/**
-	 * 查询购物车总价
-	 */
+
 	@Override
-	public String findUserShopTotalByUserId(Long user_id) {
+	public String findUserShopTotalByUserId(Long userId) {
 		// TODO Auto-generated method stub
-		return userShopMapper.findUserShopTotalByUserId(user_id);
+		return userShopMapper.findUserShopTotalByUserId(userId);
 	}
 	
 }

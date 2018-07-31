@@ -7,18 +7,18 @@
 
 	<resultMap type="Item" id="itemResultMap">
 		<id column="id" property="id" />
-		<result column="itemDetail_id" property="itemDetail_id"/>
-		<association property="itemDetail" javaType="ItemDetail" select="findItemDetailById" column="itemDetail_id">
+		<result column="itemDetailId" property="itemDetailId"/>
+		<association property="itemDetail" javaType="ItemDetail" select="findItemDetailById" column="itemDetailId">
 			<id column="id" property="id" />
 		</association>
-		<association property="itemCategoryDetail" javaType="ItemCategoryDetail" select="findItemCategoryDetailById" column="itemCategoryDetail_id">
+		<association property="itemCategoryDetail" javaType="ItemCategoryDetail" select="findItemCategoryDetailById" column="itemCategoryDetailId">
 			<id column="id" property="id" />
 		</association>
 	</resultMap>
 	
 	<select id="findItemList" resultMap="itemResultMap">
 		SELECT 
-			id, name, price, brand, model, stock, picture, addtime, itemDetail_id, itemCategoryDetail_id
+			id, name, price, brand, model, stock, picture, addtime, itemDetail_id itemDetailId, itemCategoryDetail_id itemCategoryDetailId
 		FROM
 			item
 		<where>
@@ -30,7 +30,7 @@
 	
 	<select id="findItemListWrapper" resultMap="itemResultMap">
 		SELECT 
-			id, name, price, brand, model, stock, picture, addtime, itemDetail_id, itemCategoryDetail_id
+			id, name, price, brand, model, stock, picture, addtime, itemDetail_id itemDetailId, itemCategoryDetail_id itemCategoryDetailId
 		FROM
 			item
 		<where>
@@ -44,7 +44,7 @@
 		FROM
 			itemDetail
 		WHERE
-			id = #{itemDetail_id}
+			id = #{itemDetailId}
 	</select>
 	
 	<select id="findItemCategoryDetailById" resultType="ItemCategoryDetail" parameterType="int">
@@ -53,7 +53,7 @@
 		FROM
 			itemCategoryDetail
 		WHERE
-			id = #{itemCategoryDetail_id}
+			id = #{itemCategoryDetailId}
 	</select>
 	
 	<select id="findItemStock" resultType="java.lang.Integer">

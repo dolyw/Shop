@@ -48,7 +48,7 @@
 			user u,
 			userAddr ur
 		WHERE
-			u.id = ur.user_id
+			u.id = ur.userId
 			AND u.id = #{id}
 	</select> -->
 	

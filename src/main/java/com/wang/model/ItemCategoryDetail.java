@@ -5,17 +5,16 @@ import java.util.Date;
 /**
  * 商品详细分类，二类
  * @author MyPC
- *
  */
 public class ItemCategoryDetail extends SuperEntity {
 	private String name;
 	private Date addtime;
-	private Long itemCategory_id;
-	public Long getItemCategory_id() {
-		return itemCategory_id;
+	private Long itemCategoryId;
+	public Long getItemCategoryId() {
+		return itemCategoryId;
 	}
-	public void setItemCategory_id(Long itemCategory_id) {
-		this.itemCategory_id = itemCategory_id;
+	public void setItemCategoryId(Long itemCategoryId) {
+		this.itemCategoryId = itemCategoryId;
 	}
 	private ItemCategory itemCategory;
 	public ItemCategory getItemCategory() {

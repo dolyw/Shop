@@ -3,7 +3,6 @@ package com.wang.model;
 /**
  * 商品详细
  * @author wang926454
- *
  */
 public class ItemDetail extends SuperEntity {
 	private String picture1;

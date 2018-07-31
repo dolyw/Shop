@@ -69,7 +69,7 @@ public class OrdersController extends BaseController {
 	public String orderState(Model model, HttpServletRequest request) {
     	User user = (User)request.getSession().getAttribute("user");
     	Map map = new HashMap(16);
-		map.put("user_id", user.getId());
+		map.put("userId", user.getId());
 		List<UserShop> userShops = this.userShopService.findUserShopList(map);
 		if(userShops.size() <= 0){
 			return "redirect:/user/shop";
@@ -97,17 +97,17 @@ public class OrdersController extends BaseController {
      */
     @RequiresUser
     @RequestMapping("/pay")
-	public String orderPay(Model model, Orders orders, String useraddr_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String orderPay(Model model, Orders orders, String useraddrId, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	User user = (User)request.getSession().getAttribute("user");
-    	orders.setUser_id(user.getId());
+    	orders.setUserId(user.getId());
     	//设置收获地址
-    	UserAddr userAddr = userAddrService.selectById(useraddr_id);
+    	UserAddr userAddr = userAddrService.selectById(useraddrId);
     	orders.setName(userAddr.getName());
     	orders.setPhone(userAddr.getPhone());
     	orders.setAddr(userAddr.getAddr());
     	// 订单号生成
     	orders.setNo(RandomUtil.getRandom());
-    	orders.setTrade_no(orders.getNo());
+    	orders.setTradeNo(orders.getNo());
 		// 设置订单状态
     	orders.setState(1);
     	orders.setAddtime(new Date());
@@ -123,32 +123,33 @@ public class OrdersController extends BaseController {
         	//获取参数
         	
         	//商户订单号，商户网站订单系统中唯一订单号，必填
-        	String out_trade_no = new String(orders.getNo().getBytes("ISO-8859-1"),"UTF-8");
+        	String outTradeNo = new String(orders.getNo().getBytes("ISO-8859-1"),"UTF-8");
         	//付款金额，必填
-        	String total_amount = new String(orders.getPrice().getBytes("ISO-8859-1"),"UTF-8");
+        	String totalAmount = new String(orders.getPrice().getBytes("ISO-8859-1"),"UTF-8");
         	//订单名称，必填
         	String subject = new String("Pay".getBytes("ISO-8859-1"),"UTF-8");
         	//商品描述，可空
         	String body = new String("".getBytes("ISO-8859-1"),"UTF-8");
         	
-        	alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
-        			+ "\"total_amount\":\""+ total_amount +"\"," 
+        	alipayRequest.setBizContent("{\"out_trade_no\":\""+ outTradeNo +"\","
+        			+ "\"totalAmount\":\""+ totalAmount +"\","
         			+ "\"subject\":\""+ subject +"\"," 
         			+ "\"body\":\""+ body +"\"," 
         			+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         	
         	//若想给BizContent增加其他可选请求参数，以增加自定义超时时间参数timeout_express来举例说明
         	//alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
-        	//		+ "\"total_amount\":\""+ total_amount +"\"," 
+        	//		+ "\"totalAmount\":\""+ totalAmount +"\","
         	//		+ "\"subject\":\""+ subject +"\"," 
         	//		+ "\"body\":\""+ body +"\"," 
         	//		+ "\"timeout_express\":\"10m\"," 
         	//		+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-        	//请求参数可查阅【电脑网站支付的API文档-alipay.trade.page.pay-请求参数】章节
+        	// 请求参数可查阅【电脑网站支付的API文档-alipay.trade.page.pay-请求参数】章节
             // 请求
         	String result = alipayClient.pageExecute(alipayRequest).getBody();
             // System.out.println(result);
-            //AlipayConfig.logResult(result);// 记录支付日志
+			// 记录支付日志
+            // AlipayConfig.logResult(result);
             response.setContentType("text/html; charset=utf8");
             PrintWriter out = response.getWriter();
             out.print(result);
@@ -177,23 +178,23 @@ public class OrdersController extends BaseController {
         	//获取参数
         	
         	//商户订单号，商户网站订单系统中唯一订单号，必填
-        	String out_trade_no = new String(orders.getNo().getBytes("ISO-8859-1"),"UTF-8");
+        	String outTradeNo = new String(orders.getNo().getBytes("ISO-8859-1"),"UTF-8");
         	//付款金额，必填
-        	String total_amount = new String(orders.getPrice().getBytes("ISO-8859-1"),"UTF-8");
+        	String totalAmount = new String(orders.getPrice().getBytes("ISO-8859-1"),"UTF-8");
         	//订单名称，必填
         	String subject = new String("Pay".getBytes("ISO-8859-1"),"UTF-8");
         	//商品描述，可空
         	String body = new String("".getBytes("ISO-8859-1"),"UTF-8");
         	
-        	alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
-        			+ "\"total_amount\":\""+ total_amount +"\"," 
+        	alipayRequest.setBizContent("{\"outTradeNo\":\""+ outTradeNo +"\","
+        			+ "\"totalAmount\":\""+ totalAmount +"\","
         			+ "\"subject\":\""+ subject +"\"," 
         			+ "\"body\":\""+ body +"\"," 
         			+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         	
         	//若想给BizContent增加其他可选请求参数，以增加自定义超时时间参数timeout_express来举例说明
-        	//alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
-        	//		+ "\"total_amount\":\""+ total_amount +"\"," 
+        	//alipayRequest.setBizContent("{\"outTradeNo\":\""+ outTradeNo +"\","
+        	//		+ "\"totalAmount\":\""+ totalAmount +"\","
         	//		+ "\"subject\":\""+ subject +"\"," 
         	//		+ "\"body\":\""+ body +"\"," 
         	//		+ "\"timeout_express\":\"10m\"," 
@@ -202,7 +203,8 @@ public class OrdersController extends BaseController {
             // 请求
         	String result = alipayClient.pageExecute(alipayRequest).getBody();
             // System.out.println(result);
-            //AlipayConfig.logResult(result);// 记录支付日志
+			// 记录支付日志
+            // AlipayConfig.logResult(result);
             response.setContentType("text/html; charset=utf8");
             PrintWriter out = response.getWriter();
             out.print(result);
@@ -222,21 +224,18 @@ public class OrdersController extends BaseController {
     @RequestMapping("/list")
 	public String orderList(Model model, String pageNumber, String pageSize, HttpServletRequest request) {
     	User user = (User)request.getSession().getAttribute("user");
-    	if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+    	if(StringUtils.isBlank(pageNumber)){
+            pageNumber = "1";
         }
-        if(!StringUtils.isNotBlank(pageSize))
+        if(StringUtils.isBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Map map = new HashMap(16);
-		map.put("user_id", user.getId());
+		map.put("userId", user.getId());
         Page<Orders> selectPage = ordersService.findOrdersList(
-        		new Page<Orders>(page_Num, page_Size), map);
-        //System.out.println(selectPage.getRecords().get(0).getOrderItems().get(0).getItem());
+        		new Page<Orders>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)), map);
         model.addAttribute("orders", selectPage.getRecords());
 		return "front/order/orderList";
 	}

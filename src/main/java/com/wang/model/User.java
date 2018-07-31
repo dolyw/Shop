@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.annotations.TableName;
 /**
  * 用户
  * @author wang926454
- *
  */
 @TableName("user")
 public class User extends SuperEntity {

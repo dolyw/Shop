@@ -32,6 +32,11 @@ import com.wang.service.IUserService;
  */
 public class UserRealm extends AuthorizingRealm {
 
+	/**
+	 * 每页数量
+	 */
+	private static final int PAGE_NUMBER = 3;
+
 	@Autowired
 	private IUserService userService;
 	@Autowired
@@ -50,12 +55,11 @@ public class UserRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken)authcToken;
 		String pwd = new String(token.getPassword());
-		//System.out.println(pwd.equals("phone"));
 		// 密码为phone是手机短信登录
-		if("phone".equals(pwd)){
+		if(Constants.LOGIN_STYLE.equals(pwd)){
 			Map map = new HashMap(16);
 			map.put("account", token.getUsername());
-			if(userService.findUserList(new Page<User>(1, 3), map).getRecords().size() == 0){
+			if(userService.findUserList(new Page<User>(1, PAGE_NUMBER), map).getRecords().size() == 0){
 				throw new UnknownAccountException();
 			}
 			List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
@@ -66,12 +70,12 @@ public class UserRealm extends AuthorizingRealm {
 		}else{
 			Map map = new HashMap(16);
 			map.put("account", token.getUsername());
-			if(userService.findUserList(new Page<User>(1, 3), map).getRecords().size() == 0){
+			if(userService.findUserList(new Page<User>(1, PAGE_NUMBER), map).getRecords().size() == 0){
 				throw new UnknownAccountException();
 			}
 			// token.getPassword()的返回值是char[]，必须转换成String
 			map.put("password", pwd);
-			List<User> users = userService.findUserList(new Page<User>(1, 3), map).getRecords();
+			List<User> users = userService.findUserList(new Page<User>(1, PAGE_NUMBER), map).getRecords();
 			if(users.size() == 1){
 				// 在session中设定user
 				SecurityUtils.getSubject().getSession().setAttribute("user", users.get(0));
@@ -91,20 +95,16 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String account = (String) principals.getPrimaryPrincipal();
-        //System.out.println(account);
-        
         Map map = new HashMap(16);
 		map.put("account", account);
         List<Role> roles = roleService.findRoleListByUser(
         		new Page<Role>(1, 50), map).getRecords();
-        
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         if(roles.size() != 0){
 			for(Role role:roles){
 				// 将数据库中的角色标签符放入
 				Map pmap = new HashMap(16);
 				pmap.put("name", role.getName());
-				//System.out.println(role.getName());
 				List<Permission> permissions = permissionService.findPermissionListByRole(
 		        		new Page<Permission>(1, 1000), pmap).getRecords();
 				if(permissions.size() != 0){

@@ -265,7 +265,7 @@
 						
 						<br/><br/>
 						<button type="button" onclick="addrAdd()" class="btn btn-primary">保存</button>
-						<%-- <input id="user_id" name="user_id" type="hidden" value="${sessionScope.user.id}"> --%>
+						<%-- <input id="userId" name="userId" type="hidden" value="${sessionScope.user.id}"> --%>
 						<input id="action" name="action" type="hidden" value="userState">
 						<input id="id" name="id" type="hidden" />
 					</li>

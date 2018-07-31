@@ -6,7 +6,7 @@
 <mapper namespace="com.wang.mapper.IndexCategoryMapper">
 
 	<resultMap type="IndexCategory" id="indexCategoryResultMap">
-		<id column="indexcategory_id" property="id" />
+		<id column="indexcategoryId" property="id" />
 		<association property="itemCategory" javaType="ItemCategory">
 			<id column="id" property="id"/>
 			<result column="name" property="name" />
@@ -19,7 +19,7 @@
 			a.id,
 			a.name,
 			a.addtime,
-			b.id indexcategory_id,
+			b.id indexcategoryId,
 			b.itemCategory_id
 		FROM
 			itemcategory a
@@ -30,24 +30,24 @@
 	
 	<resultMap type="IndexCategory" id="indexCategoryResultMap2">
 		<id column="id" property="id" />
-		<result column="itemCategory_id" property="itemCategory_id" />
+		<result column="itemCategoryId" property="itemCategoryId" />
 		<association property="itemCategory" javaType="ItemCategory">
-			<id column="itemCategory_id2" property="id" />
-			<result column="itemcategory_name" property="name" />
-			<result column="itemcategory_addtime" property="addtime" />
+			<id column="itemCategoryId2" property="id" />
+			<result column="itemcategoryName" property="name" />
+			<result column="itemcategoryAddtime" property="addtime" />
 			<collection property="itemCategoryDetails" ofType="ItemCategoryDetail">
-				<id column="itemcategorydetail_id" property="id" />
-				<result column="itemcategorydetail_name" property="name" />
-				<result column="itemcategorydetail_addtime" property="addtime" />
+				<id column="itemcategorydetailId" property="id" />
+				<result column="itemcategorydetailName" property="name" />
+				<result column="itemcategorydetailAddtime" property="addtime" />
 			</collection>
 		</association>
 	</resultMap>
 	
 	<select id="findIndexCategoryList" resultMap="indexCategoryResultMap2">
     	SELECT
-			a.id,a.itemCategory_id,
-			b.id itemCategory_id2,b.`name` itemcategory_name,b.addtime itemcategory_addtime,
-			c.id itemcategorydetail_id,c.`name` itemcategorydetail_name,c.addtime itemcategorydetail_addtime
+			a.id,a.itemCategory_id itemCategoryId,
+			b.id itemCategoryId2,b.`name` itemcategoryName,b.addtime itemcategoryAddtime,
+			c.id itemcategorydetailId,c.`name` itemcategorydetailName,c.addtime itemcategorydetailAddtime
 		FROM
 			indexcategory a
 		LEFT JOIN itemcategory b ON a.itemCategory_id = b.id
@@ -57,7 +57,7 @@
 	</select>
 	
 	<select id="findIndexCategory" resultType="IndexCategory">
-		select id,itemCategory_id from indexcategory where id=#{id}
+		select id,itemCategory_id itemCategoryId from indexcategory where id=#{id}
 	</select>
 	
 	<update id="updateItemcategory_id">  

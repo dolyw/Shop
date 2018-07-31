@@ -83,21 +83,19 @@ public class OrdersAdminController extends BaseController {
     @ResponseBody
 	@RequestMapping("/order/getList")
     public Object getOrderList(String pageNumber, String pageSize, String state) {
-        if(!StringUtils.isNotBlank(pageNumber)){
-            pageNumber="1";
+        if(StringUtils.isBlank(pageNumber)){
+            pageNumber = "1";
         }
-        if(!StringUtils.isNotBlank(pageSize))
+        if(StringUtils.isBlank(pageSize))
         {
-        	pageSize="10";
+        	pageSize = "10";
         }
         //分页 pageNumber--》页数    pageSize--》每页显示数据的条数
-        int page_Num = Integer.parseInt(pageNumber);
-        int page_Size = Integer.parseInt(pageSize);
         Map mapSelect = new HashMap(16);
         //查询订单状态 1未付款 2已付款
         mapSelect.put("state", state);
         Page<Orders> selectPage = ordersService.findOrdersListAdmin(
-        		new Page<Orders>(page_Num, page_Size), mapSelect);
+        		new Page<Orders>(Integer.parseInt(pageNumber), Integer.parseInt(pageSize)), mapSelect);
         //bootstrap-table要求服务器返回的json须包含：total，rows，用rows一直接收不到，改成data好了。。。
         Map<String, Object> map = new HashMap<String, Object>(16);
         map.put("total", selectPage.getTotal());

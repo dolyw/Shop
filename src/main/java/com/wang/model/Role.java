@@ -5,7 +5,6 @@ import java.util.List;
 /**
  * 角色
  * @author wang926454
- *
  */
 public class Role extends SuperEntity {
 	private String name;

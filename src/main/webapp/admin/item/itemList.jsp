@@ -168,7 +168,7 @@
 		            return changeDateFormat(value)
 		        }
 		    }, {
-		        field: 'itemDetail_id',
+		        field: 'itemDetailId',
 		        title: '详细索引',
 		        align: 'center',
 		        valign : 'middle',
@@ -196,7 +196,7 @@
 	            		            url: '${ctx}/admin/item/delete',
 	            		            data: {
 	            		                id: row.id,
-	            		                itemDetail_id: row.itemDetail.id
+	            		                itemDetailId: row.itemDetail.id
 	            		            },
 	            		            dataType: 'json',
 	            		            success: function (data) {

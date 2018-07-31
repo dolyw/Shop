@@ -59,7 +59,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 											    <label for="name">请选择第一个大类</label>
-											    <select class="form-control" id="itemCategory_id1" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id1" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 1}">
@@ -73,7 +73,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第二个大类</label>
-											    <select class="form-control" id="itemCategory_id2" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id2" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 2}">
@@ -87,7 +87,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第三个大类</label>
-											    <select class="form-control" id="itemCategory_id3" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id3" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 3}">
@@ -101,7 +101,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第四个大类</label>
-											    <select class="form-control" id="itemCategory_id4" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id4" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 4}">
@@ -115,7 +115,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第五个大类</label>
-											    <select class="form-control" id="itemCategory_id5" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id5" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 5}">
@@ -129,7 +129,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第六个大类</label>
-											    <select class="form-control" id="itemCategory_id6" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id6" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 6}">
@@ -146,7 +146,7 @@
 										<div class="col-md-6">
 										 	<div class="form-group">
 											    <label for="name">请选择第七个大类</label>
-											    <select class="form-control" id="itemCategory_id7" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id7" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 7}">
@@ -160,7 +160,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第八个大类</label>
-											    <select class="form-control" id="itemCategory_id8" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id8" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 8}">
@@ -174,7 +174,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第九个大类</label>
-											    <select class="form-control" id="itemCategory_id9" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id9" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 9}">
@@ -188,7 +188,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第十个大类</label>
-											    <select class="form-control" id="itemCategory_id10" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id10" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 10}">
@@ -202,7 +202,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第十一个大类</label>
-											    <select class="form-control" id="itemCategory_id11" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id11" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 11}">
@@ -216,7 +216,7 @@
 											</div>
 											<div class="form-group">
 											    <label for="name">请选择第十二个大类</label>
-											    <select class="form-control" id="itemCategory_id12" name="itemCategory_id">
+											    <select class="form-control" id="itemCategory_id12" name="itemCategoryId">
 											       <option value="0">不设置</option>
 											       <c:forEach var="indexCategory" items="${indexCategorys}">
 											       		<c:if test="${indexCategory.id == 12}">

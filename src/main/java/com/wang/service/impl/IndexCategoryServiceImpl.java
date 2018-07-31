@@ -13,7 +13,6 @@ import com.wang.service.IIndexCategoryService;
 /**
  * 主页12个分类显示
  * @author wang926454
- *
  */
 @Service
 public class IndexCategoryServiceImpl extends ServiceImpl<IndexCategoryMapper, IndexCategory> implements IIndexCategoryService {
@@ -40,8 +39,8 @@ public class IndexCategoryServiceImpl extends ServiceImpl<IndexCategoryMapper, I
 	}
 
 	@Override
-	public void updateItemcategory_id(Long id) {
+	public void updateItemcategoryId(Long id) {
 		// TODO Auto-generated method stub
-		indexCategoryMapper.updateItemcategory_id(id);
+		indexCategoryMapper.updateItemcategoryId(id);
 	}
 }

@@ -42,11 +42,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if(requestUri.startsWith(request.getContextPath())){  
             requestUri = requestUri.substring(request.getContextPath().length(), requestUri.length());  
         }  
-        //系统根目录  
-        if (StringUtils.equals("/",requestUri)) {  
+        // 系统根目录
+        if (StringUtils.equals(Constants.STRING,requestUri)) {
             return true;  
         }  
-        //放行exceptUrls中配置的url  
+        // 放行exceptUrls中配置的url
         for (String url:exceptUrls  
              ) {  
             if(url.endsWith("/**")){  
@@ -57,12 +57,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 return true;  
             }  
         }  
-        //其他需要登录后才能进行访问的url  
+        // 其他需要登录后才能进行访问的url
         //String sessionid = request.getSession().getId();  
         //UserSessionStatus status = SessionManager.getStatus(sessionid);  
   
         //如果没有登录  
-        if(null == request.getSession().getAttribute("user")){              
+        if(null == request.getSession().getAttribute(Constants.SESSION_USER)){
             //返回到登录页面     
         	response.sendRedirect(request.getContextPath() + "/front/message.jsp");
             return false;  

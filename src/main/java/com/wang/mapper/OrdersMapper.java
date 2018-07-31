@@ -7,6 +7,10 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.wang.model.Orders;
 
+/**
+ * 订单
+ * @author wang926454
+ */
 public interface OrdersMapper extends BaseMapper<Orders>{
 	/**
 	 * 前端查询订单

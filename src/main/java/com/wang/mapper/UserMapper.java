@@ -7,6 +7,10 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.wang.model.User;
 
+/**
+ * 用户
+ * @author wang926454
+ */
 public interface UserMapper extends BaseMapper<User>{
 	/**
 	 * 查询所有用户列表

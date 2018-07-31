@@ -14,7 +14,6 @@ import com.wang.service.IPermissionService;
 /**
  * 权限
  * @author wang926454
- *
  */
 @Service
 public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
@@ -24,10 +23,6 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 
 	@Override
 	public Page<Permission> findPermissionListByRole(Page<Permission> page, Map map) {
-		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
-	    // page.setOptimizeCountSql(false);
-	    // 不查询总记录数
-	    // page.setSearchCount(false);
 	    return page.setRecords(permissionMapper.findPermissionListByRole(page, map));
 	}
 	

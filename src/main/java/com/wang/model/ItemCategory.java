@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * 商品大类，一类
  * @author MyPC
- *
  */
 public class ItemCategory extends SuperEntity {
 	private String name;

@@ -7,58 +7,58 @@
 
 	<resultMap type="UserShop" id="userShopResultMap">
 		<id column="id" property="id" />
-		<result column="item_id" property="item_id"/>
-		<association property="item" javaType="Item" select="findItemById" column="item_id">
+		<result column="itemId" property="itemId"/>
+		<association property="item" javaType="Item" select="findItemById" column="itemId">
 			<id column="id" property="id" />
 			<association property="itemDetail" javaType="ItemDetail" >
-				<id column="itemDetail_id" property="id" />
-				<result column="itemdetail_list" property="list"/>
+				<id column="itemDetailId" property="id" />
+				<result column="itemdetailList" property="list"/>
 			</association>
 			<!-- <association property="itemDetail" javaType="com.zhike.model.ItemDetail" 
-				select="com.zhike.mapper.ItemMapper.findItemDetailById" column="itemDetail_id">
-				<id column="id" property="itemDetail_id" />
+				select="com.zhike.mapper.ItemMapper.findItemDetailById" column="itemDetailId">
+				<id column="id" property="itemDetailId" />
 			</association>
 			<association property="itemCategoryDetail" javaType="ItemCategoryDetail" 
-				select="com.zhike.mapper.ItemMapper.findItemCategoryDetailById" column="itemCategoryDetail_id">
+				select="com.zhike.mapper.ItemMapper.findItemCategoryDetailById" column="itemCategoryDetailId">
 			</association> -->
 		</association>
 	</resultMap>
 	
 	<select id="findUserShopList" resultMap="userShopResultMap">
 		SELECT
-			id, count, price, addtime, user_id, item_id
+			id, count, price, addtime, user_id userId, item_id itemId
 		FROM
 			usershop
 		<where>
 				<if test="id!=null and id!=''">
 					and id = #{id}
 				</if>
-				<if test="user_id!=null and user_id!=''">
-					and user_id = #{user_id}
+				<if test="userId!=null and userId!=''">
+					and user_id = #{userId}
 				</if>
-				<if test="item_id!=null and item_id!=''">
-					and item_id = #{item_id}
+				<if test="itemId!=null and itemId!=''">
+					and item_id = #{itemId}
 				</if>
 		</where>
 	</select>
 	
 	<!-- <select id="findItemById" resultType="Item">
 		SELECT  
-			id, name, price, brand, model, stock, picture, addtime, itemDetail_id, itemCategoryDetail_id
+			id, name, price, brand, model, stock, picture, addtime, itemDetailId, itemCategoryDetailId
 		FROM
 			item
 		WHERE
-			id = #{item_id}
+			id = #{itemId}
 	</select> -->
 	
 	<select id="findItemById" resultType="Item">
 		SELECT  
-			item.*,itemdetail.id itemdetail_id,itemdetail.list itemdetail_list
+			item.*,itemdetail.id itemdetailId,itemdetail.list itemdetailList
 		FROM
 			item,itemdetail
 		WHERE
 			item.itemdetail_id = itemdetail.id
-			and item.id = #{item_id}
+			and item.id = #{itemId}
 	</select>
 	
 	<select id="findUserShopTotalByUserId" resultType="java.lang.String">
@@ -67,7 +67,7 @@
 		from 
 			usershop
 		where
-			user_id = #{user_id}
+			userId = #{userId}
 	</select>
 	
 </mapper>

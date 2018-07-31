@@ -17,7 +17,7 @@ import com.wang.service.IItemService;
 
 /**
  * 商品
- * author MyPC
+ * @author MyPC
  */
 @Service
 public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements IItemService {
@@ -30,37 +30,24 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements II
 
 	@Override
 	public Page<Item> findItemList(Page<Item> page, Map map) {
-		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
-	    // page.setOptimizeCountSql(false);
-	    // 不查询总记录数
-	    // page.setSearchCount(false);
 	    return page.setRecords(itemMapper.findItemList(page, map));
 	}
-	
-	/**
-	 * 商品和商品详细，事物启动，要么一起改动，要么都不变
-	 */
+
 	@Override
-	public boolean deleteItem(Long id, Long itemDetail_id) {
+	public boolean deleteItem(Long id, Long itemDetailId) {
 		itemMapper.deleteById(id);
-		itemDetailMapper.deleteById(itemDetail_id);
+		itemDetailMapper.deleteById(itemDetailId);
 		return true;
 	}
-	
-	/**
-	 * 商品和商品详细，事物启动，要么一起改动，要么都不变
-	 */
+
 	@Override
 	public boolean addItem(Item item, ItemDetail itemDetail) {
 		itemDetailMapper.insert(itemDetail);
-    	item.setItemDetail_id(itemDetail.getId());
+    	item.setItemDetailId(itemDetail.getId());
         itemMapper.insert(item);
 		return true;
 	}
 
-	/**
-	 * 商品和商品详细，事物启动，要么一起改动，要么都不变
-	 */
 	@Override
 	public boolean updateItem(Item item, ItemDetail itemDetail) {
 		itemDetailMapper.updateById(itemDetail);
@@ -70,10 +57,6 @@ public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements II
 
 	@Override
 	public Page<Item> findItemListWrapper(Page<Item> page, Wrapper<Item> wrapper) {
-		// 不进行 count sql 优化，解决 MP 无法自动优化 SQL 问题
-	    // page.setOptimizeCountSql(false);
-	    // 不查询总记录数
-	    // page.setSearchCount(false);
 	    return page.setRecords(itemMapper.findItemListWrapper(page, wrapper));
 	}
 }

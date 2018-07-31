@@ -10,6 +10,10 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.wang.model.ItemCategory;
 
+/**
+ * 商品大类，一类
+ * @author MyPC
+ */
 public interface ItemCategoryMapper extends BaseMapper<ItemCategory>{
 	/**
 	 * 查询商品分类列表

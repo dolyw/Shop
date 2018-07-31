@@ -31,7 +31,7 @@
         	<div class="con">
         		<h2>感谢您在本站购物！您的订单已提交成功，请记住您的订单号：<a href="javascript:;">${out_trade_no}</a></h2>
         		<div class="name">
-        			您的支付宝交易号为: <strong>${trade_no}</strong>，       			
+        			您的支付宝交易号为: <strong>${tradeNo}</strong>，
 	        		您的付款金额为: <strong>￥${total_amount}</strong>	        		
         		</div>
         				               	

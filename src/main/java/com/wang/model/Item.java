@@ -5,7 +5,6 @@ import java.util.Date;
 /**
  * 商品
  * @author wang926454
- *
  */
 public class Item extends SuperEntity {
 	private String name;
@@ -17,19 +16,19 @@ public class Item extends SuperEntity {
 	private Date addtime;
 	private ItemCategoryDetail itemCategoryDetail;
 	private ItemDetail itemDetail;
-	private Long itemDetail_id;
-	private Long itemCategoryDetail_id;
-	public Long getItemCategoryDetail_id() {
-		return itemCategoryDetail_id;
+	private Long itemDetailId;
+	private Long itemCategoryDetailId;
+	public Long getItemCategoryDetailId() {
+		return itemCategoryDetailId;
 	}
-	public void setItemCategoryDetail_id(Long itemCategoryDetail_id) {
-		this.itemCategoryDetail_id = itemCategoryDetail_id;
+	public void setItemCategoryDetailId(Long itemCategoryDetailId) {
+		this.itemCategoryDetailId = itemCategoryDetailId;
 	}
-	public Long getItemDetail_id() {
-		return itemDetail_id;
+	public Long getItemDetailId() {
+		return itemDetailId;
 	}
-	public void setItemDetail_id(Long itemDetail_id) {
-		this.itemDetail_id = itemDetail_id;
+	public void setItemDetailId(Long itemDetailId) {
+		this.itemDetailId = itemDetailId;
 	}
 	public ItemDetail getItemDetail() {
 		return itemDetail;

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wang.util.Constants;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,7 +76,7 @@ public class IndexController extends BaseController {
 	@RequestMapping("/adminManager")
 	public String adminManager(Model model, HttpServletRequest request) throws Exception{
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") == null){
+		if(session.getAttribute(Constants.SESSION_USER) == null){
 			return "admin/login";
 		}
 		return "admin/index";
@@ -99,7 +100,7 @@ public class IndexController extends BaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/403")
-	public String A403(Model model, HttpServletRequest request) throws Exception{
+	public String i403(Model model, HttpServletRequest request) throws Exception{
 		return "front/message";
 	}
 	

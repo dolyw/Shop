@@ -7,6 +7,10 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.plugins.pagination.Pagination;
 import com.wang.model.Role;
 
+/**
+ * 角色
+ * @author wang926454
+ */
 public interface RoleMapper extends BaseMapper<Role>{
 	/**
 	 * 根据用户查询角色列表

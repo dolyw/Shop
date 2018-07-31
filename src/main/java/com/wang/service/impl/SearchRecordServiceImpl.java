@@ -9,7 +9,6 @@ import com.wang.service.ISearchRecordService;
 /**
  * 搜索记录
  * @author wang926454
- *
  */
 @Service
 public class SearchRecordServiceImpl extends ServiceImpl<SearchRecordMapper, SearchRecord> implements ISearchRecordService {
