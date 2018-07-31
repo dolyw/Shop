@@ -131,7 +131,7 @@ public class OrdersController extends BaseController {
         	//商品描述，可空
         	String body = new String("".getBytes("ISO-8859-1"),"UTF-8");
         	
-        	alipayRequest.setBizContent("{\"out_trade_no\":\""+ outTradeNo +"\","
+        	alipayRequest.setBizContent("{\"outTradeNo\":\""+ outTradeNo +"\","
         			+ "\"totalAmount\":\""+ totalAmount +"\","
         			+ "\"subject\":\""+ subject +"\"," 
         			+ "\"body\":\""+ body +"\"," 

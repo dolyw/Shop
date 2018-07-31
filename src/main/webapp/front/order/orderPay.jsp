@@ -29,10 +29,10 @@
        <div class="orderSucess">
         	<h2 class="out">下单成功！<!-- <a href="javascript:;">Your Order has been received!</a> --></h2>
         	<div class="con">
-        		<h2>感谢您在本站购物！您的订单已提交成功，请记住您的订单号：<a href="javascript:;">${out_trade_no}</a></h2>
+        		<h2>感谢您在本站购物！您的订单已提交成功，请记住您的订单号：<a href="javascript:;">${outTradeNo}</a></h2>
         		<div class="name">
         			您的支付宝交易号为: <strong>${tradeNo}</strong>，
-	        		您的付款金额为: <strong>￥${total_amount}</strong>	        		
+	        		您的付款金额为: <strong>￥${totalAmount}</strong>
         		</div>
         				               	
 	            <%-- <div class="payOnline">
