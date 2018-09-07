@@ -6,13 +6,13 @@ import com.baomidou.mybatisplus.service.IService;
 import com.wang.model.IndexCategory;
 
 /**
- * TODO：主页12个分类显示
+ * 主页12个分类显示
  * @author Wang926454
  * @date 2018/7/30 16:54
  */
 public interface IIndexCategoryService extends IService<IndexCategory> {
 	/**
-	 * TODO：
+	 * null
 	 * @param 
 	 * @return java.util.List<com.wang.model.IndexCategory>
 	 * @author Wang926454
@@ -21,7 +21,7 @@ public interface IIndexCategoryService extends IService<IndexCategory> {
 	public List<IndexCategory> findItemCategoryList();
 	
 	/**
-	 * TODO：
+	 * null
 	 * @param 
 	 * @return java.util.List<com.wang.model.IndexCategory>
 	 * @author Wang926454
@@ -30,7 +30,7 @@ public interface IIndexCategoryService extends IService<IndexCategory> {
 	public List<IndexCategory> findIndexCategoryList();
 	
 	/**
-	 * TODO：
+	 * null
 	 * @param id
 	 * @return com.wang.model.IndexCategory
 	 * @author Wang926454
@@ -39,7 +39,7 @@ public interface IIndexCategoryService extends IService<IndexCategory> {
 	public IndexCategory findIndexCategory(Long id);
 	
 	/**
-	 * TODO：
+	 * null
 	 * @param id
 	 * @return void
 	 * @author Wang926454

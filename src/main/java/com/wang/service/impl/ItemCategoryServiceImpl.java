@@ -13,7 +13,7 @@ import com.wang.model.ItemCategory;
 import com.wang.service.IItemCategoryService;
 
 /**
- * TODO：商品分类
+ * 商品分类
  * @author Wang926454
  * @date 2018/7/30 18:50
  */
@@ -29,7 +29,6 @@ public class ItemCategoryServiceImpl extends ServiceImpl<ItemCategoryMapper, Ite
 
 	@Override
 	public Page<ItemCategory> findItemCategoryListWrapper(Page<ItemCategory> page, Wrapper<ItemCategory> wrapper) {
-		// TODO Auto-generated method stub
 		return page.setRecords(itemCategoryMapper.findItemCategoryListWrapper(page, wrapper));
 	}
 

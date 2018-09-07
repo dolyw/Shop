@@ -1,7 +1,7 @@
 package com.wang.util;
 
 /**
- * TODO：常量定义
+ * 常量定义
  * @author Wang926454
  * @date 2018/7/31 9:50
  */

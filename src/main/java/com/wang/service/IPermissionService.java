@@ -7,13 +7,13 @@ import com.baomidou.mybatisplus.service.IService;
 import com.wang.model.Permission;
 
 /**
- * TODO：权限
+ * 权限
  * @author Wang926454
  * @date 2018/7/30 18:47
  */
 public interface IPermissionService extends IService<Permission>{
 	/**
-	 * TODO：
+	 * null
 	 * @param page
 	 * @param map
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.Permission>

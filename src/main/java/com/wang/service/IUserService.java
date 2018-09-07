@@ -8,14 +8,14 @@ import com.wang.model.User;
 import com.wang.model.UserShop;
 
 /**
- * TODO：用户
+ * 用户
  * @author Wang926454
  * @date 2018/7/30 18:48
  */
 public interface IUserService extends IService<User>{
 
 	/**
-	 * TODO：
+	 * null
 	 * @param page
 	 * @param map
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.User>
@@ -25,7 +25,7 @@ public interface IUserService extends IService<User>{
 	public Page<User> findUserList(Page<User> page, Map map);
 	
 	/**
-	 * TODO：添加商品到购物车
+	 * 添加商品到购物车
 	 * @param userShop
 	 * @return boolean
 	 * @author Wang926454

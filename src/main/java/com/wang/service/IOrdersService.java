@@ -7,13 +7,13 @@ import com.baomidou.mybatisplus.service.IService;
 import com.wang.model.Orders;
 
 /**
- * TODO：订单
+ * 订单
  * @author Wang926454
  * @date 2018/7/30 18:46
  */
 public interface IOrdersService extends IService<Orders>{
 	/**
-	 * TODO：生成订单
+	 * 生成订单
 	 * @param orders
 	 * @return boolean
 	 * @author Wang926454
@@ -22,7 +22,7 @@ public interface IOrdersService extends IService<Orders>{
 	public boolean addOrders(Orders orders);
 	
 	/**
-	 * TODO： 
+	 * null
 	 * @param page
 	 * @param map
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.Orders>
@@ -32,7 +32,7 @@ public interface IOrdersService extends IService<Orders>{
 	public Page<Orders> findOrdersList(Page<Orders> page, Map map);
 	
 	/**
-	 * TODO： 
+	 * null
 	 * @param page
 	 * @param map
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.Orders>

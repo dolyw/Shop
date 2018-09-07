@@ -63,13 +63,11 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders> impleme
 
 	@Override
 	public Page<Orders> findOrdersList(Page<Orders> page, Map map) {
-		// TODO Auto-generated method stub
 	    return page.setRecords(ordersMapper.findOrdersList(page, map));
 	}
 
 	@Override
 	public Page<Orders> findOrdersListAdmin(Page<Orders> page, Map map) {
-		// TODO Auto-generated method stub
 	    return page.setRecords(ordersMapper.findOrdersListAdmin(page, map));
 	}
 }

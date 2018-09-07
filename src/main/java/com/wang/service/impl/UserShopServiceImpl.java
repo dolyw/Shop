@@ -23,13 +23,11 @@ public class UserShopServiceImpl extends ServiceImpl<UserShopMapper, UserShop> i
 
 	@Override
 	public List<UserShop> findUserShopList(Map map) {
-		// TODO Auto-generated method stub
 		return userShopMapper.findUserShopList(map);
 	}
 
 	@Override
 	public String findUserShopTotalByUserId(Long userId) {
-		// TODO Auto-generated method stub
 		return userShopMapper.findUserShopTotalByUserId(userId);
 	}
 	

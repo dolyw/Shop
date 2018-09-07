@@ -45,7 +45,7 @@ public class UserRealm extends AuthorizingRealm {
 	private IPermissionService permissionService;
 
 	/**
-	 * TODO：认证
+	 * 认证
 	 * @param authcToken
 	 * @return org.apache.shiro.authc.AuthenticationInfo
 	 * @author Wang926454

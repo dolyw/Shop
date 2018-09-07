@@ -22,25 +22,21 @@ public class IndexCategoryServiceImpl extends ServiceImpl<IndexCategoryMapper, I
 	
 	@Override
 	public List<IndexCategory> findItemCategoryList() {
-		// TODO Auto-generated method stub
 		return indexCategoryMapper.findItemCategoryList();
 	}
 
 	@Override
 	public List<IndexCategory> findIndexCategoryList() {
-		// TODO Auto-generated method stub
 		return indexCategoryMapper.findIndexCategoryList();
 	}
 
 	@Override
 	public IndexCategory findIndexCategory(Long id) {
-		// TODO Auto-generated method stub
 		return indexCategoryMapper.findIndexCategory(id);
 	}
 
 	@Override
 	public void updateItemcategoryId(Long id) {
-		// TODO Auto-generated method stub
 		indexCategoryMapper.updateItemcategoryId(id);
 	}
 }

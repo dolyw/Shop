@@ -7,13 +7,13 @@ import com.baomidou.mybatisplus.service.IService;
 import com.wang.model.ItemCategoryDetail;
 
 /**
- * TODO：商品详细分类
+ * 商品详细分类
  * @author Wang926454
  * @date 2018/7/30 16:54
  */
 public interface IItemCategoryDetailService extends IService<ItemCategoryDetail>{
 	/**
-	 * TODO：
+	 * null
 	 * @param page
 	 * @param map
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.ItemCategoryDetail>

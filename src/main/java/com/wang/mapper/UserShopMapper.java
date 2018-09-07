@@ -20,7 +20,7 @@ public interface UserShopMapper extends BaseMapper<UserShop>{
 	List<UserShop> findUserShopList(Map map);
 
 	/**
-	 * TODO：查询购物车总价
+	 * 查询购物车总价
 	 * @param userId
 	 * @return java.lang.String
 	 * @author Wang926454

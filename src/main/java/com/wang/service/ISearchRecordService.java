@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.service.IService;
 import com.wang.model.SearchRecord;
 
 /**
- * TODO：搜索记录
+ * 搜索记录
  * @author Wang926454
  * @date 2018/7/30 18:48
  */

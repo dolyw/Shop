@@ -23,7 +23,6 @@ public class UserAddrServiceImpl extends ServiceImpl<UserAddrMapper, UserAddr> i
 
 	@Override
 	public Boolean updateUserAddrDefault(Long id) {
-		// TODO Auto-generated method stub
 		List<UserAddr> userAddrOlds = userAddrMapper.selectList(
 		        new EntityWrapper<UserAddr>().eq("defaults", 1));
 		if(userAddrOlds.size() == 1){

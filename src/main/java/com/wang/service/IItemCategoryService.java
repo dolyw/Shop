@@ -10,13 +10,13 @@ import com.baomidou.mybatisplus.service.IService;
 import com.wang.model.ItemCategory;
 
 /**
- * TODO：商品分类
+ * 商品分类
  * @author Wang926454
  * @date 2018/7/30 16:59
  */
 public interface IItemCategoryService extends IService<ItemCategory>{
 	/**
-	 * TODO：
+	 * null
 	 * @param page
 	 * @param map
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.ItemCategory>
@@ -26,7 +26,7 @@ public interface IItemCategoryService extends IService<ItemCategory>{
 	public Page<ItemCategory> findItemCategoryList(Page<ItemCategory> page, Map map);
 	
 	/**
-	 * TODO：
+	 * null
 	 * @param page
 	 * @param wrapper
 	 * @return com.baomidou.mybatisplus.plugins.Page<com.wang.model.ItemCategory>
